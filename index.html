@@ -243,6 +243,51 @@
             text-align: left;
         }
         
+        /* Services Dropdown Styles */
+        .service-dropdown-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .service-dropdown-btn:hover {
+            background-color: rgba(10, 42, 90, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .service-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background-color: rgba(248, 249, 250, 0.7);
+            border-radius: 0 0 10px 10px;
+            margin-top: 15px;
+        }
+        
+        .service-dropdown-content.show {
+            max-height: 500px;
+            padding: 20px;
+        }
+        
+        .service-dropdown-content p {
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+        
+        .service-dropdown-content ul {
+            padding-right: 20px;
+            margin-top: 10px;
+        }
+        
+        body[dir="ltr"] .service-dropdown-content ul {
+            padding-right: 0;
+            padding-left: 20px;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-section {
@@ -263,6 +308,10 @@
             .flag-icon {
                 width: 25px;
                 height: 17px;
+            }
+            
+            .service-dropdown-content {
+                padding: 15px;
             }
         }
     </style>
@@ -344,29 +393,7 @@
                 </div>
             </div>
             
-            <div class="row mt-5">
-                <div class="col-md-4">
-                    <div class="card text-center p-4 fade-in">
-                        <i class="bi bi-building card-icon"></i>
-                        <h5 data-key="specialty1">تأسيس وتسجيل الشركات</h5>
-                        <p data-key="specialty1_desc">تأسيس وتسجيل الشركات (محلية وأجنبية)</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-center p-4 fade-in">
-                        <i class="bi bi-file-earmark-check card-icon"></i>
-                        <h5 data-key="specialty2">تسجيل العلامات التجارية</h5>
-                        <p data-key="specialty2_desc">تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card text-center p-4 fade-in">
-                        <i class="bi bi-house-door card-icon"></i>
-                        <h5 data-key="specialty3">الخدمات الضريبية والجمركية</h5>
-                        <p data-key="specialty3_desc">براءة ذمة، متابعة نظام "سكودا"، الامتثال الضريبي</p>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </section>
 
@@ -380,6 +407,22 @@
                         <i class="bi bi-building card-icon"></i>
                         <h5 data-key="service1">تأسيس وتسجيل الشركات</h5>
                         <p data-key="service1_desc">تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون العراقي</p>
+                        
+                        <!-- Dropdown button -->
+                        <button class="service-dropdown-btn" type="button">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        
+                        <!-- Dropdown content -->
+                        <div class="service-dropdown-content">
+                            <p data-key="service1_details">نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة لاختيار الشكل القانوني المناسب للشركة.</p>
+                            <ul>
+                                <li data-key="service1_item1">تأسيس الشركات محدودة المسؤولية</li>
+                                <li data-key="service1_item2">تأسيس الشركات المساهمة</li>
+                                <li data-key="service1_item3">تأسيس فروع الشركات الأجنبية</li>
+                                <li data-key="service1_item4">تسجيل الشركات في سجل الشركات</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -387,6 +430,22 @@
                         <i class="bi bi-file-earmark-text card-icon"></i>
                         <h5 data-key="service2">تسجيل العلامات التجارية</h5>
                         <p data-key="service2_desc">تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي</p>
+                        
+                        <!-- Dropdown button -->
+                        <button class="service-dropdown-btn" type="button">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        
+                        <!-- Dropdown content -->
+                        <div class="service-dropdown-content">
+                            <p data-key="service2_details">نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة والمتابعة المستمرة.</p>
+                            <ul>
+                                <li data-key="service2_item1">تسجيل العلامات التجارية محلياً ودولياً</li>
+                                <li data-key="service2_item2">تقديم طلبات براءات الاختراع</li>
+                                <li data-key="service2_item3">تجديد وتسجيل التغييرات على العلامات</li>
+                                <li data-key="service2_item4">متابعة قضايا التعدي على العلامات التجارية</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -394,6 +453,22 @@
                         <i class="bi bi-house card-icon"></i>
                         <h5 data-key="service3">خدمات الضرائب والكمارك</h5>
                         <p data-key="service3_desc">براءة ذمة، متابعة نظام "سكودا"، الامتثال الضريبي</p>
+                        
+                        <!-- Dropdown button -->
+                        <button class="service-dropdown-btn" type="button">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        
+                        <!-- Dropdown content -->
+                        <div class="service-dropdown-content">
+                            <p data-key="service3_details">نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة الذمة الضريبية، ومتابعة نظام "سكودا"، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.</p>
+                            <ul>
+                                <li data-key="service3_item1">إعداد وتقديم الإقرارات الضريبية</li>
+                                <li data-key="service3_item2">متابعة نظام "سكودا" للضرائب</li>
+                                <li data-key="service3_item3">إصدار براءة الذمة الضريبية</li>
+                                <li data-key="service3_item4">التعامل مع الإجراءات الجمركية</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
@@ -401,6 +476,22 @@
                         <i class="bi bi-briefcase card-icon"></i>
                         <h5 data-key="service4">الاستيراد والتصدير</h5>
                         <p data-key="service4_desc">تراخيص، موافقات، ومتابعة المعارض التجارية</p>
+                        
+                        <!-- Dropdown button -->
+                        <button class="service-dropdown-btn" type="button">
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        
+                        <!-- Dropdown content -->
+                        <div class="service-dropdown-content">
+                            <p data-key="service4_details">نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.</p>
+                            <ul>
+                                <li data-key="service4_item1">الحصول على تراخيص الاستيراد والتصدير</li>
+                                <li data-key="service4_item2">متابعة المعارض التجارية المحلية والدولية</li>
+                                <li data-key="service4_item3">تسهيل الإجراءات الجمركية للتجارة</li>
+                                <li data-key="service4_item4">تقديم الاستشارات التجارية الدولية</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -574,12 +665,32 @@
                 services_title: "الخدمات",
                 service1: "تأسيس وتسجيل الشركات",
                 service1_desc: "تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون العراقي",
+                service1_details: "نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة لاختيار الشكل القانوني المناسب للشركة.",
+                service1_item1: "تأسيس الشركات محدودة المسؤولية",
+                service1_item2: "تأسيس الشركات المساهمة",
+                service1_item3: "تأسيس فروع الشركات الأجنبية",
+                service1_item4: "تسجيل الشركات في سجل الشركات",
                 service2: "تسجيل العلامات التجارية",
                 service2_desc: "تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي",
+                service2_details: "نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة والمتابعة المستمرة.",
+                service2_item1: "تسجيل العلامات التجارية محلياً ودولياً",
+                service2_item2: "تقديم طلبات براءات الاختراع",
+                service2_item3: "تجديد وتسجيل التغييرات على العلامات",
+                service2_item4: "متابعة قضايا التعدي على العلامات التجارية",
                 service3: "خدمات الضرائب والكمارك",
                 service3_desc: "براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي",
+                service3_details: "نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة الذمة الضريبية، ومتابعة نظام 'سكودا'، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.",
+                service3_item1: "إعداد وتقديم الإقرارات الضريبية",
+                service3_item2: "متابعة نظام 'سكودا' للضرائب",
+                service3_item3: "إصدار براءة الذمة الضريبية",
+                service3_item4: "التعامل مع الإجراءات الجمركية",
                 service4: "الاستيراد والتصدير",
                 service4_desc: "تراخيص، موافقات، ومتابعة المعارض التجارية",
+                service4_details: "نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.",
+                service4_item1: "الحصول على تراخيص الاستيراد والتصدير",
+                service4_item2: "متابعة المعارض التجارية المحلية والدولية",
+                service4_item3: "تسهيل الإجراءات الجمركية للتجارة",
+                service4_item4: "تقديم الاستشارات التجارية الدولية",
                 
                 // Contact Section
                 contact_title: "اتصل بنا",
@@ -638,12 +749,32 @@
                 services_title: "خزمەتگوزاریەکان",
                 service1: "دامەزراندن و تۆمارکردنی کۆمپانیاکان",
                 service1_desc: "دامەزراندن و تۆمارکردنی کۆمپانیاکان (ناوخۆیی و بیانی) بە هەموو جۆرەکانیان بەپێی یاسای عێراق",
+                service1_details: "ئێمە خزمەتگوزاری دامەزراندن و تۆمارکردنی کۆمپانیاکان بە هەموو جۆرەکان (ناوخۆیی و بیانی) بەپێی یاسای عێراق پێشکەش دەکەین. ئەم کردارانە بە وردی و خێرایی ئەنجام دەدەین، لەگەڵ پێشکەشکردنی ڕاوێژکاری یاسایی پێویست بۆ هەڵبژاردنی شێوازی یاسایی گونجاو بۆ کۆمپانیاکە.",
+                service1_item1: "دامەزراندنی کۆمپانیاکانی بەرپرسیارییەتی سنووردار",
+                service1_item2: "دامەزراندنی کۆمپانیاکانی پشکی",
+                service1_item3: "دامەزراندنی لقەکانی کۆمپانیاکانی بیانی",
+                service1_item4: "تۆمارکردنی کۆمپانیاکان لە تۆماری کۆمپانیاکان",
                 service2: "تۆمارکردنی نیشانە بازرگانییەکان",
                 service2_desc: "تۆمارکردنی نیشانە بازرگانییەکان و پاتێنتەکان بەپێی پۆلێنکردنی نێودەوڵەتی نیس",
+                service2_details: "ئێمە خزمەتگوزاری تۆمارکردنی نیشانە بازرگانییەکان و پاتێنتەکان بەپێی پۆلێنکردنی نێودەوڵەتی نیس پێشکەش دەکەین. ئێمە مافی خاوەنێتی بیرەکان بەڕێوەدەبەین بە کردارە یاساییە ڕاستەکان و شوێنکەوتنی بەردەوام.",
+                service2_item1: "تۆمارکردنی نیشانە بازرگانییەکان لە ناوخۆ و دەرەوە",
+                service2_item2: "پێشکەشکردنی داواکاری پاتێنت",
+                service2_item3: "نوێکردنەوە و تۆمارکردنی گۆڕانکاریەکان لەسەر نیشانەکان",
+                service2_item4: "شوێنکەوتنی کێشەکانی دەستدرێژی لەسەر نیشانە بازرگانییەکان",
                 service3: "خزمەتگوزاریەکانی باج و کۆمەرک",
                 service3_desc: "پاکی باج، شوێنکەوتنی سیستەمی 'سکودا'، ڕەزامەندی باج",
+                service3_details: "ئێمە خزمەتگوزاری فراوان لە بواری باج و کۆمەرک پێشکەش دەکەین، لەوانە دەرکردنی پاکی باج، شوێنکەوتنی سیستەمی 'سکودا'، و دڵنیابوون لە ڕەزامەندی لەگەڵ یاسا و ڕێنماییەکانی باج و کۆمەرک.",
+                service3_item1: "ئامادەکردن و پێشکەشکردنی ڕاپۆرتی باج",
+                service3_item2: "شوێنکەوتنی سیستەمی 'سکودا' بۆ باج",
+                service3_item3: "دەرکردنی پاکی باج",
+                service3_item4: "مامەڵەکردن لەگەڵ کردارە کۆمەرکییەکان",
                 service4: "هاوردە و دەرھێنان",
                 service4_desc: "مۆڵەت، ڕەزامەندی، و شوێنکەوتنی پێشانگا بازرگانییەکان",
+                service4_details: "ئێمە خزمەتگوزاری تەواو لە بواری هاوردە و دەرهێنان پێشکەش دەکەین، کە بریتین لە بەدەستهێنانی مۆڵەت و ڕەزامەندی پێویست، شوێنکەوتنی پێشانگا بازرگانییەکان، و ئاسانکردنی کردارە کۆمەرکی و بازرگانییەکان.",
+                service4_item1: "بەدەستهێنانی مۆڵەتی هاوردە و دەرهێنان",
+                service4_item2: "شوێنکەوتنی پێشانگا بازرگانییە ناوخۆیی و نێودەوڵەتییەکان",
+                service4_item3: "ئاسانکردنی کردارە کۆمەرکییەکان بۆ بازرگانی",
+                service4_item4: "پێشکەشکردنی ڕاوێژکاری بازرگانی نێودەوڵەتی",
                 
                 // Contact Section
                 contact_title: "پەیوەندیمان پێوەبکە",
@@ -702,12 +833,32 @@
                 services_title: "Services",
                 service1: "Company Establishment and Registration",
                 service1_desc: "Establishment and registration of companies (local and foreign) of all types in accordance with Iraqi law",
+                service1_details: "We provide establishment and registration services for all types of companies (local and foreign) in accordance with the provisions of Iraqi law. We ensure that the procedures are completed accurately and quickly, with the necessary legal consultations to choose the appropriate legal form for the company.",
+                service1_item1: "Establishment of limited liability companies",
+                service1_item2: "Establishment of joint stock companies",
+                service1_item3: "Establishment of branches of foreign companies",
+                service1_item4: "Registration of companies in the companies register",
                 service2: "Trademark Registration",
                 service2_desc: "Trademark and patent registration according to the international Nice classification",
+                service2_details: "We provide trademark and patent registration services according to the international Nice classification. We ensure the protection of our clients' intellectual property rights through correct legal procedures and continuous follow-up.",
+                service2_item1: "Trademark registration locally and internationally",
+                service2_item2: "Submission of patent applications",
+                service2_item3: "Renewal and registration of changes to trademarks",
+                service2_item4: "Follow-up of trademark infringement cases",
                 service3: "Tax and Customs Services",
                 service3_desc: "Tax clearance, follow-up of the 'Skoda' system, tax compliance",
+                service3_details: "We provide comprehensive services in the field of taxes and customs, including issuing tax clearance certificates, following up on the 'Skoda' system, and ensuring compliance with tax and customs laws and regulations.",
+                service3_item1: "Preparation and submission of tax returns",
+                service3_item2: "Follow-up of the 'Skoda' tax system",
+                service3_item3: "Issuance of tax clearance certificates",
+                service3_item4: "Handling customs procedures",
                 service4: "Import and Export",
                 service4_desc: "Licenses, approvals, and follow-up of trade fairs",
+                service4_details: "We provide integrated services in the field of import and export, including obtaining necessary licenses and approvals, following up on trade fairs, and facilitating customs and commercial procedures.",
+                service4_item1: "Obtaining import and export licenses",
+                service4_item2: "Follow-up of local and international trade fairs",
+                service4_item3: "Facilitating customs procedures for trade",
+                service4_item4: "Providing international business consultations",
                 
                 // Contact Section
                 contact_title: "Contact Us",
@@ -805,6 +956,36 @@
                 e.preventDefault();
                 alert('Thank you for your message! We will contact you soon.');
                 this.reset();
+            });
+            
+            // Service dropdown functionality
+            const dropdownButtons = document.querySelectorAll('.service-dropdown-btn');
+            
+            dropdownButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const isOpen = content.classList.contains('show');
+                    
+                    // Close all open dropdowns first
+                    document.querySelectorAll('.service-dropdown-content.show').forEach(openContent => {
+                        if (openContent !== content) {
+                            openContent.classList.remove('show');
+                            openContent.previousElementSibling.querySelector('i').classList.remove('bi-chevron-up');
+                            openContent.previousElementSibling.querySelector('i').classList.add('bi-chevron-down');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    if (isOpen) {
+                        content.classList.remove('show');
+                        this.querySelector('i').classList.remove('bi-chevron-up');
+                        this.querySelector('i').classList.add('bi-chevron-down');
+                    } else {
+                        content.classList.add('show');
+                        this.querySelector('i').classList.remove('bi-chevron-down');
+                        this.querySelector('i').classList.add('bi-chevron-up');
+                    }
+                });
             });
         });
     </script>
