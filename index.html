@@ -1,32 +1,40 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المحامي - بشدار أحمد أبوبكر</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Playfair+Display:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #0a2a5a;
-            /* Navy Blue */
-            --secondary-color: #d4af37;
-            /* Gold */
-            --light-color: #f8f9fa;
-            --dark-color: #343a40;
+            --navy: #0b1f3a;
+            --navy-mid: #132d55;
+            --navy-light: #1a3a6e;
+            --gold: #c9a84c;
+            --gold-light: #e8c97a;
+            --gold-pale: #f5e9c8;
+            --cream: #faf8f4;
+            --white: #ffffff;
+            --text-dark: #0d1b2a;
+            --text-mid: #334155;
+            --text-light: #94a3b8;
+            --glass: rgba(255,255,255,0.07);
+            --glass-border: rgba(255,255,255,0.12);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Tajawal', 'Roboto', sans-serif;
             direction: rtl;
-            scroll-behavior: smooth;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
         }
 
         body[dir="ltr"] {
@@ -34,1152 +42,1803 @@
             direction: ltr;
         }
 
+        /* ─── SCROLLBAR ─────────────────────────── */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* ─── NAVBAR ─────────────────────────────── */
         .navbar {
-            background-color: var(--primary-color);
-            padding: 15px 0;
-            transition: all 0.3s ease;
+            background: transparent;
+            padding: 20px 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 999;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(11, 31, 58, 0.97);
+            backdrop-filter: blur(20px);
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
         }
 
         .navbar-brand {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: white !important;
+            font-size: 1.25rem;
+            color: var(--white) !important;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-brand span {
+            color: var(--gold);
         }
 
         .nav-link {
-            color: rgba(255, 255, 255, 0.8) !important;
+            color: rgba(255,255,255,0.85) !important;
             font-weight: 500;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--secondary-color) !important;
-        }
-
-        .language-switcher {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .lang-btn:hover,
-        .lang-btn.active {
-            border-color: var(--secondary-color);
-            background-color: rgba(212, 175, 55, 0.1);
-        }
-
-        .flag-icon {
-            width: 30px;
-            height: 20px;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        .hero-section {
-            background: linear-gradient(rgba(10, 42, 90, 0.8), rgba(10, 42, 90, 0.9)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 100px 0;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-
-            .profile-img {
-                width: 300px;
-                height: 300px;
-                border-radius: 50%;
-                object-fit: cover;
-                border: 5px solid rgba(0, 0, 0, 0);
-                /* invisible border */
-                margin: 0 auto 30px;
-                display: block;
-            }
-
-            margin: 0 auto 30px;
-            display: block;
-        }
-
-        .section-title {
+            font-size: 0.95rem;
+            margin: 0 8px;
+            padding: 6px 0 !important;
             position: relative;
-            margin-bottom: 50px;
-            font-weight: 700;
-            color: var(--primary-color);
+            transition: color 0.3s ease;
+            letter-spacing: 0.3px;
         }
 
-        .section-title:after {
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            right: 0;
-            width: 70px;
-            height: 3px;
-            background-color: var(--secondary-color);
+            bottom: 0; left: 0; right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            margin: auto;
+            transition: width 0.3s ease;
         }
 
-        body[dir="ltr"] .section-title:after {
-            right: auto;
-            left: 0;
-        }
+        .nav-link:hover { color: var(--gold-light) !important; }
+        .nav-link:hover::after { width: 100%; }
 
-        .card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 30px;
-            height: 100%;
+        /* Language Switcher */
+        .language-switcher { display: flex; align-items: center; gap: 8px; }
+
+        .lang-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-
-        .progress {
-            height: 10px;
-            margin-bottom: 20px;
-        }
-
-        .progress-bar {
-            background-color: var(--secondary-color);
-        }
-
-        .contact-form {
-            background-color: var(--light-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            padding: 12px 30px;
+            transition: all 0.3s ease;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
-        .btn-primary:hover {
-            background-color: #08306b;
-            border-color: #08306b;
+        .lang-btn:hover, .lang-btn.active {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.15);
+            color: var(--gold-light);
         }
 
-        .btn-outline-primary {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+        .flag-icon { width: 22px; height: 15px; object-fit: cover; border-radius: 2px; }
+
+        /* ─── HERO ─────────────────────────────────── */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #060e1c 0%, #0b1f3a 40%, #132d55 70%, #0d2242 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
         }
 
-        .btn-outline-primary:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
+        /* Animated background grid */
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(201,168,76,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,168,76,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
         }
 
-        .social-icons a {
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Glowing orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: orbFloat 8s ease-in-out infinite alternate;
+        }
+
+        .hero-orb-1 {
+            width: 500px; height: 500px;
+            background: var(--gold);
+            top: -100px; left: -100px;
+            animation-delay: 0s;
+        }
+
+        .hero-orb-2 {
+            width: 400px; height: 400px;
+            background: #3b82f6;
+            bottom: -100px; right: -100px;
+            animation-delay: -3s;
+        }
+
+        .hero-orb-3 {
+            width: 300px; height: 300px;
+            background: var(--gold);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -6s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .hero-content { position: relative; z-index: 2; padding-top: 100px; }
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            margin: 0 5px;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 50px 0 20px;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Animation classes */
-        .fade-in {
+            gap: 8px;
+            background: rgba(201,168,76,0.15);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 50px;
+            padding: 6px 18px;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            animation: fadeSlideUp 0.8s ease forwards;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-badge i { font-size: 0.8rem; }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeSlideUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        /* Language-specific styles */
-        [data-lang="ar"],
-        [data-lang="ku"] {
-            direction: rtl;
-            text-align: right;
+        .hero-title .gold-text { color: var(--gold); }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.9;
+            margin-bottom: 36px;
+            max-width: 580px;
+            animation: fadeSlideUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        [data-lang="en"] {
-            direction: ltr;
-            text-align: left;
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeSlideUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+            transform: translateY(20px);
         }
 
-        /* Service Modal Styles */
-        .service-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(201,168,76,0.5);
+            color: var(--navy);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+            padding: 13px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.7);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            animation: fadeSlideUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-stat {
+            border-left: 2px solid rgba(201,168,76,0.4);
+            padding-left: 16px;
+        }
+
+        body[dir="ltr"] .hero-stat {
+            border-left: none;
+            border-right: 2px solid rgba(201,168,76,0.4);
+            padding-left: 0;
+            padding-right: 16px;
+        }
+
+        .hero-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.55);
+            margin-top: 4px;
+        }
+
+        /* Profile image side */
+        .hero-image-side {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            animation: fadeSlideLeft 1s ease 0.4s forwards;
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            transform: translateX(-30px);
         }
 
-        .service-modal.active {
-            opacity: 1;
-            visibility: visible;
+        body[dir="ltr"] .hero-image-side {
+            animation: fadeSlideRight 1s ease 0.4s forwards;
+            transform: translateX(30px);
         }
 
-        .modal-content {
-            background-color: white;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .service-modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, var(--primary-color), #1a3a7a);
-            color: white;
-            border-radius: 15px 15px 0 0;
-            padding: 20px 30px;
+        .profile-ring {
             position: relative;
+            width: 340px;
+            height: 340px;
         }
 
-        .modal-close {
+        .profile-ring::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            left: 30px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
+            inset: -12px;
+            border-radius: 50%;
+            background: conic-gradient(var(--gold), transparent, var(--gold-light), transparent, var(--gold));
+            animation: spin 8s linear infinite;
         }
 
-        .modal-close:hover {
-            color: var(--secondary-color);
+        .profile-ring::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--navy);
         }
 
-        .modal-body {
-            padding: 30px;
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .profile-img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--navy);
+        }
+
+        .profile-badge-floating {
+            position: absolute;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            border-radius: 16px;
+            padding: 10px 18px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(201,168,76,0.4);
+            z-index: 10;
+            animation: floatBadge 4s ease-in-out infinite alternate;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-verified {
+            bottom: 20px;
+            right: -20px;
+        }
+
+        body[dir="ltr"] .badge-verified { right: auto; left: -20px; }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0) rotate(-2deg); }
+            100% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes fadeSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeSlideLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeSlideRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.75rem;
+            animation: bounce 2s ease-in-out infinite;
         }
 
-        .service-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .scroll-dot {
+            width: 30px;
+            height: 50px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 6px;
         }
 
-        .service-details h4 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .scroll-dot::after {
+            content: '';
+            width: 5px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 3px;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(16px); opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-6px); }
+        }
+
+        /* ─── SECTION STYLES ─────────────────────── */
+        section { padding: 100px 0; }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.25);
+            border-radius: 50px;
+            padding: 5px 16px;
+            color: var(--gold);
+            font-size: 0.8rem;
             font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .service-features {
-            background-color: #f8f9fa;
-            border-radius: 10px;
+        .section-title-main {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .section-title-main.light { color: var(--white); }
+
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            border-radius: 2px;
+            margin-bottom: 24px;
+        }
+
+        body[dir="ltr"] .section-divider { margin-left: 0; margin-right: auto; }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* ─── ABOUT ──────────────────────────────── */
+        #about { background: var(--white); }
+
+        .about-image-wrap {
+            position: relative;
             padding: 20px;
         }
 
-        .service-features h5 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
+        .about-img-main {
+            width: 100%;
+            border-radius: 24px;
+            object-fit: cover;
+            height: 480px;
+            box-shadow: 0 30px 60px rgba(11,31,58,0.2);
+        }
+
+        .about-img-frame {
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--gold);
+            border-radius: 24px;
+            transform: translate(16px, 16px);
+            z-index: 0;
+        }
+
+        .about-img-main { position: relative; z-index: 1; }
+
+        .about-experience-badge {
+            position: absolute;
+            bottom: -10px;
+            left: 30px;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 20px 28px;
+            z-index: 5;
+            box-shadow: 0 20px 40px rgba(11,31,58,0.3);
+        }
+
+        body[dir="ltr"] .about-experience-badge { left: auto; right: 30px; }
+
+        .about-experience-badge .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .about-experience-badge .label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.65);
+            margin-top: 4px;
+        }
+
+        .about-text { padding-right: 20px; }
+        body[dir="ltr"] .about-text { padding-right: 0; padding-left: 20px; }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .about-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 16px;
+            border: 1px solid rgba(201,168,76,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .about-feature-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(201,168,76,0.12);
+            transform: translateY(-3px);
+        }
+
+        .about-feature-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .about-feature-text h6 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--navy);
+            margin-bottom: 2px;
+        }
+
+        .about-feature-text p {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* Vision / Mission cards */
+        .vm-cards { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+
+        .vm-card {
+            flex: 1;
+            min-width: 200px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            border-radius: 18px;
+            padding: 24px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 100px; height: 100px;
+            background: rgba(201,168,76,0.1);
+            border-radius: 50%;
+        }
+
+        .vm-card-icon {
+            width: 44px; height: 44px;
+            background: rgba(201,168,76,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+
+        .vm-card h5 { font-weight: 700; margin-bottom: 8px; color: var(--gold); font-size: 0.95rem; }
+        .vm-card p { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.6; margin: 0; }
+
+        /* ─── SERVICES ───────────────────────────── */
+        #services {
+            background: linear-gradient(180deg, var(--navy) 0%, #0d2a50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #services::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .services-intro { position: relative; z-index: 2; }
+
+        .service-card-new {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            z-index: 2;
+        }
+
+        .service-card-new::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201,168,76,0.12), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card-new:hover {
+            border-color: rgba(201,168,76,0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .service-card-new:hover::before { opacity: 1; }
+
+        .service-card-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(201,168,76,0.1);
+            line-height: 1;
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            transition: color 0.4s ease;
+        }
+
+        body[dir="ltr"] .service-card-number { right: auto; left: 20px; }
+
+        .service-card-new:hover .service-card-number { color: rgba(201,168,76,0.2); }
+
+        .service-icon-wrap {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(201,168,76,0.3);
+        }
+
+        .service-card-new:hover .service-icon-wrap { transform: scale(1.1) rotate(-5deg); }
+
+        .service-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .service-card-desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gold);
+            font-size: 0.85rem;
             font-weight: 600;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: gap 0.3s ease;
         }
 
-        .service-features ul {
-            padding-right: 20px;
+        .service-card-link:hover { gap: 10px; }
+
+        /* ─── SERVICE MODAL ──────────────────────── */
+        .service-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 14, 30, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+            padding: 20px;
         }
 
-        body[dir="ltr"] .service-features ul {
-            padding-right: 0;
-            padding-left: 20px;
+        .service-modal.active { opacity: 1; visibility: visible; }
+
+        .modal-content-new {
+            background: var(--white);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 88vh;
+            overflow-y: auto;
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
         }
 
-        .service-features li {
+        .service-modal.active .modal-content-new {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-head {
+            background: linear-gradient(135deg, var(--navy), var(--navy-light));
+            color: white;
+            border-radius: 28px 28px 0 0;
+            padding: 32px 36px;
+            position: relative;
+        }
+
+        .modal-head-icon {
+            width: 56px; height: 56px;
+            background: rgba(201,168,76,0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .modal-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        body[dir="ltr"] .modal-close-btn { left: auto; right: 20px; }
+
+        .modal-close-btn:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+
+        .modal-body-new { padding: 36px; }
+
+        .service-img-new {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .modal-body-new h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        .modal-body-new p { color: var(--text-mid); line-height: 1.8; font-size: 0.95rem; }
+
+        .modal-features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: var(--cream);
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid rgba(201,168,76,0.15);
+        }
+
+        .modal-feature-item i {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .modal-feature-item span { font-size: 0.88rem; color: var(--text-mid); line-height: 1.5; }
+
+        /* ─── CONTACT ────────────────────────────── */
+        #contact { background: var(--cream); }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(11,31,58,0.08);
+            border: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--navy);
             margin-bottom: 8px;
-            line-height: 1.6;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-section {
-                text-align: center;
-                padding: 80px 0;
-            }
+        .form-control {
+            border: 1.5px solid rgba(11,31,58,0.12);
+            border-radius: 14px;
+            padding: 12px 18px;
+            font-size: 0.92rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+            font-family: 'Tajawal', sans-serif;
+        }
 
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(201,168,76,0.12);
+            background: var(--white);
+        }
 
-            .lang-btn {
-                width: 40px;
-                height: 40px;
-            }
+        textarea.form-control { resize: none; }
 
-            .flag-icon {
-                width: 25px;
-                height: 17px;
-            }
+        /* Contact Info Side */
+        .contact-info-card {
+            background: linear-gradient(145deg, var(--navy), var(--navy-light));
+            border-radius: 28px;
+            padding: 40px 32px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
 
-            .modal-body {
-                padding: 20px;
-            }
+        .contact-info-card::after {
+            content: '';
+            position: absolute;
+            bottom: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: rgba(201,168,76,0.08);
+            border-radius: 50%;
+        }
 
-            .service-image {
-                height: 200px;
-            }
+        .contact-info-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-info-card p.sub { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin-bottom: 32px; }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info-icon {
+            width: 44px; height: 44px;
+            background: rgba(201,168,76,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-text h6 { font-weight: 600; color: var(--white); font-size: 0.85rem; margin-bottom: 2px; }
+        .contact-info-text span { font-size: 0.83rem; color: rgba(255,255,255,0.6); }
+
+        .contact-divider { border-color: rgba(255,255,255,0.1); margin: 28px 0; }
+
+        .hours-row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .hours-row .day { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .hours-row .time { font-size: 0.85rem; color: var(--gold-light); font-weight: 500; }
+
+        .social-row { display: flex; gap: 10px; margin-top: 28px; }
+
+        .social-btn {
+            width: 42px; height: 42px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(201,168,76,0.25);
+            color: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        /* Map */
+        .map-wrap {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(11,31,58,0.12);
+            border: 2px solid rgba(201,168,76,0.15);
+            margin-top: 60px;
+        }
+
+        /* ─── FOOTER ─────────────────────────────── */
+        footer {
+            background: linear-gradient(180deg, #060e1c 0%, #0b1f3a 100%);
+            color: rgba(255,255,255,0.65);
+            padding: 70px 0 30px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand span { color: var(--gold); }
+
+        .footer-desc { font-size: 0.88rem; line-height: 1.8; max-width: 300px; }
+
+        .footer-heading {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+
+        body[dir="ltr"] .footer-heading::after { right: auto; left: 0; }
+
+        .footer-link {
+            display: block;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.88rem;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            padding-right: 0;
+        }
+
+        body[dir="ltr"] .footer-link { padding-right: 0; padding-left: 0; }
+
+        .footer-link:hover { color: var(--gold-light); transform: translateX(-4px); }
+        body[dir="ltr"] .footer-link:hover { transform: translateX(4px); }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .footer-contact-item i { color: var(--gold); font-size: 0.9rem; }
+
+        .footer-divider { border-color: rgba(255,255,255,0.08); margin: 40px 0 24px; }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-copy { font-size: 0.83rem; color: rgba(255,255,255,0.4); }
+
+        .footer-social { display: flex; gap: 10px; }
+
+        .footer-social a {
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: rgba(201,168,76,0.2);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* ─── ANIMATIONS ─────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ─── RESPONSIVE ─────────────────────────── */
+        @media (max-width: 991px) {
+            section { padding: 70px 0; }
+            .hero-image-side { margin-top: 48px; }
+            .profile-ring { width: 260px; height: 260px; }
+            .about-text { padding: 0; margin-top: 32px; }
+            .about-features { grid-template-columns: 1fr; }
+            .modal-features-grid { grid-template-columns: 1fr; }
+            .contact-info-card { margin-top: 32px; height: auto; }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; }
+            .hero-stats { gap: 20px; }
+            .profile-ring { width: 220px; height: 220px; }
+            .badge-verified { right: 0; bottom: 10px; font-size: 0.75rem; padding: 8px 14px; }
+            body[dir="ltr"] .badge-verified { right: auto; left: 0; }
+            .about-features { grid-template-columns: 1fr 1fr; }
+            .vm-cards { flex-direction: column; }
+            .contact-card { padding: 24px; }
+            .modal-body-new { padding: 24px; }
+            .modal-head { padding: 24px; }
+            .lang-btn span { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .about-features { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 16px; }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- ─── NAVBAR ─── -->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#home" data-key="brand">المحامي بشدار أحمد أبوبكر</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="#home" data-key="brand">المحامي <span>بشدار أحمد أبوبكر</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home" data-key="home">لصفحة الرئيسية</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about" data-key="about">عن المحامي</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services" data-key="services">الخدمات</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact" data-key="contact">اتصل بنا</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#home" data-key="home">الصفحة الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-key="about">عن المحامي</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services" data-key="services">الخدمات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-key="contact">اتصل بنا</a></li>
                 </ul>
                 <div class="language-switcher ms-3">
                     <button class="lang-btn active" data-lang="ar" title="Arabic">
-                        <img src="https://flagcdn.com/w40/iq.png" class="flag-icon" alt="Arabic">
+                        <img src="https://flagcdn.com/w40/iq.png" class="flag-icon" alt="AR">
+                        <span>AR</span>
                     </button>
                     <button class="lang-btn" data-lang="ku" title="Kurdish">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_Kurdistan.svg/320px-Flag_of_Kurdistan.svg.png"
-                            class="flag-icon" alt="Kurdish">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Flag_of_Kurdistan.svg/320px-Flag_of_Kurdistan.svg.png" class="flag-icon" alt="KU">
+                        <span>KU</span>
                     </button>
                     <button class="lang-btn" data-lang="en" title="English">
-                        <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="English">
+                        <img src="https://flagcdn.com/w40/gb.png" class="flag-icon" alt="EN">
+                        <span>EN</span>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ─── HERO ─── -->
     <section id="home" class="hero-section">
-        <div class="container">
+        <div class="hero-grid"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <div class="container hero-content">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-4" data-key="hero_title">المحامي بشدار أحمد أبوبكر</h1>
-                    <p class="lead mb-4" data-key="hero_subtitle">خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات
-                        التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه. نقدّم خدمات
-                        قانونية متكاملة لدعم المستثمرين والشركات والأفراد وفق أحدث التشريعات.</p>
-                    <a href="#contact" class="btn btn-primary btn-lg" data-key="contact_btn">اتصل بنا الآن</a>
+                    <div class="hero-badge">
+                        <i class="bi bi-patch-check-fill"></i>
+                        <span data-key="about_desc_short">محامٍ مجاز · نقابة المحامين · كردستان / العراق</span>
+                    </div>
+                    <h1 class="hero-title" data-key="hero_title">المحامي <span class="gold-text">بشدار أحمد أبوبكر</span></h1>
+                    <p class="hero-subtitle" data-key="hero_subtitle">خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه. نقدّم خدمات قانونية متكاملة لدعم المستثمرين والشركات والأفراد وفق أحدث التشريعات.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-gold" data-key="contact_btn">
+                            <i class="bi bi-telephone-fill"></i>
+                            اتصل بنا الآن
+                        </a>
+                        <a href="#services" class="btn-outline-white">
+                            <i class="bi bi-grid-fill"></i>
+                            <span data-key="services">الخدمات</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">+15</div>
+                            <div class="hero-stat-label" data-key="years_exp">سنة خبرة</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">+500</div>
+                            <div class="hero-stat-label" data-key="clients">عميل راضٍ</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">4</div>
+                            <div class="hero-stat-label" data-key="services_count">تخصصات قانونية</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 text-center">
-                    <img src="bashdar.jpg" alt="Lawyer Profile" class="profile-img">
+                <div class="col-lg-6 hero-image-side">
+                    <div class="profile-ring">
+                        <img src="bashdar.jpg" alt="Bashdar Ahmed Abubakir" class="profile-img"
+                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'">
+                        <div class="profile-badge-floating badge-verified">
+                            <i class="bi bi-shield-fill-check"></i>
+                            <span data-key="verified">محامٍ مجاز</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
+    <!-- ─── ABOUT ─── -->
+    <section id="about">
         <div class="container">
-            <h2 class="section-title text-center" data-key="about_title">عن المحامي</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-4 text-center mb-4 mb-lg-0">
-                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-                        alt="About Lawyer" class="img-fluid rounded shadow">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <div class="about-image-wrap">
+                        <div class="about-img-frame"></div>
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80"
+                             alt="About" class="about-img-main">
+                        <div class="about-experience-badge">
+                            <div class="num">+15</div>
+                            <div class="label" data-key="years_exp">سنة خبرة</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <h3 data-key="about_name">الأستاذ بشدار أحمد أبوبكر</h3>
-                    <p class="lead" data-key="about_desc">محامٍ مجاز وعضو نقابة المحامين في إقليم كردستان / العراق.
-                        متخصص في تأسيس الشركات و تسجيل العلامات التجارية، ومتابعة الامتثال الضريبي والكمركي.</p>
-                    <p data-key="about_details">خبرة عملية واسعة في التعامل مع: دائرة تسجيل الشركات في إقليم وبغداد،
-                        الهيئة العامة للضرائب في بغداد واقليم، الهيئة العامة للكمارك في بغداد واقليم.</p>
+                <div class="col-lg-7 reveal reveal-delay-2">
+                    <div class="about-text">
+                        <div class="section-tag"><i class="bi bi-person-badge"></i> <span data-key="about">عن المحامي</span></div>
+                        <h2 class="section-title-main" data-key="about_name">الأستاذ بشدار أحمد أبوبكر</h2>
+                        <div class="section-divider"></div>
+                        <p class="section-desc mb-3" data-key="about_desc">محامٍ مجاز وعضو نقابة المحامين في إقليم كردستان / العراق. متخصص في تأسيس الشركات و تسجيل العلامات التجارية، ومتابعة الامتثال الضريبي والكمركي.</p>
+                        <p style="font-size:0.92rem; color: var(--text-mid); line-height:1.8;" data-key="about_details">خبرة عملية واسعة في التعامل مع: دائرة تسجيل الشركات في إقليم وبغداد، الهيئة العامة للضرائب في بغداد واقليم، الهيئة العامة للكمارك في بغداد واقليم.</p>
 
-                    <div class="mt-4">
-                        <h5 data-key="vision">الرؤية</h5>
-                        <p data-key="vision_text">تقديم استشارات قانونية دقيقة وموثوقة وفق المعايير المحلية والدولية.
-                        </p>
+                        <div class="about-features">
+                            <div class="about-feature-item">
+                                <div class="about-feature-icon"><i class="bi bi-building"></i></div>
+                                <div class="about-feature-text">
+                                    <h6 data-key="service1">تأسيس وتسجيل الشركات</h6>
+                                    <p data-key="specialty1_desc">تأسيس وتسجيل الشركات (محلية وأجنبية)</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="about-feature-icon"><i class="bi bi-file-earmark-text"></i></div>
+                                <div class="about-feature-text">
+                                    <h6 data-key="service2">تسجيل العلامات التجارية</h6>
+                                    <p data-key="specialty2_desc">تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="about-feature-icon"><i class="bi bi-receipt"></i></div>
+                                <div class="about-feature-text">
+                                    <h6 data-key="service3">خدمات الضرائب والكمارك</h6>
+                                    <p data-key="specialty3_desc">براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="about-feature-icon"><i class="bi bi-briefcase"></i></div>
+                                <div class="about-feature-text">
+                                    <h6 data-key="service4">الاستيراد والتصدير</h6>
+                                    <p data-key="service4_desc">تراخيص، موافقات، ومتابعة المعارض التجارية</p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <h5 data-key="mission">الرسالة</h5>
-                        <p data-key="mission_text">دعم قطاع الأعمال والمستثمرين من خلال حلول قانونية عملية وفعّالة.</p>
+                        <div class="vm-cards mt-3">
+                            <div class="vm-card">
+                                <div class="vm-card-icon"><i class="bi bi-eye"></i></div>
+                                <h5 data-key="vision">الرؤية</h5>
+                                <p data-key="vision_text">تقديم استشارات قانونية دقيقة وموثوقة وفق المعايير المحلية والدولية.</p>
+                            </div>
+                            <div class="vm-card">
+                                <div class="vm-card-icon"><i class="bi bi-rocket"></i></div>
+                                <h5 data-key="mission">الرسالة</h5>
+                                <p data-key="mission_text">دعم قطاع الأعمال والمستثمرين من خلال حلول قانونية عملية وفعّالة.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center" data-key="services_title">الخدمات</h2>
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-center p-4 h-100 fade-in service-card" data-service="1">
-                        <i class="bi bi-building card-icon"></i>
-                        <h5 data-key="service1">تأسيس وتسجيل الشركات</h5>
-                        <p data-key="service1_desc">تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون
-                            العراقي</p>
-                        <button class="btn btn-outline-primary mt-2" data-key="read_more">قراءة المزيد</button>
+    <!-- ─── SERVICES ─── -->
+    <section id="services">
+        <div class="container services-intro">
+            <div class="row mb-5">
+                <div class="col-lg-6 reveal">
+                    <div class="section-tag"><i class="bi bi-grid-3x3-gap"></i> <span data-key="services">الخدمات</span></div>
+                    <h2 class="section-title-main light" data-key="services_title">الخدمات</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <div class="col-lg-6 reveal reveal-delay-2 d-flex align-items-end">
+                    <p style="color:rgba(255,255,255,0.55); font-size:0.95rem; line-height:1.8;" data-key="hero_subtitle">خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه.</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 reveal reveal-delay-1">
+                    <div class="service-card-new service-card" data-service="1">
+                        <div class="service-card-number">01</div>
+                        <div class="service-icon-wrap"><i class="bi bi-building"></i></div>
+                        <h4 class="service-card-title" data-key="service1">تأسيس وتسجيل الشركات</h4>
+                        <p class="service-card-desc" data-key="service1_desc">تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون العراقي</p>
+                        <button class="service-card-link">
+                            <span data-key="read_more">قراءة المزيد</span>
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-center p-4 h-100 fade-in service-card" data-service="2">
-                        <i class="bi bi-file-earmark-text card-icon"></i>
-                        <h5 data-key="service2">تسجيل العلامات التجارية</h5>
-                        <p data-key="service2_desc">تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي</p>
-                        <button class="btn btn-outline-primary mt-2" data-key="read_more">قراءة المزيد</button>
+                <div class="col-lg-3 col-md-6 reveal reveal-delay-2">
+                    <div class="service-card-new service-card" data-service="2">
+                        <div class="service-card-number">02</div>
+                        <div class="service-icon-wrap"><i class="bi bi-file-earmark-text"></i></div>
+                        <h4 class="service-card-title" data-key="service2">تسجيل العلامات التجارية</h4>
+                        <p class="service-card-desc" data-key="service2_desc">تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي</p>
+                        <button class="service-card-link">
+                            <span data-key="read_more">قراءة المزيد</span>
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-center p-4 h-100 fade-in service-card" data-service="3">
-                        <i class="bi bi-house card-icon"></i>
-                        <h5 data-key="service3">خدمات الضرائب والكمارك</h5>
-                        <p data-key="service3_desc">براءة ذمة، متابعة نظام "سكودا"، الامتثال الضريبي</p>
-                        <button class="btn btn-outline-primary mt-2" data-key="read_more">قراءة المزيد</button>
+                <div class="col-lg-3 col-md-6 reveal reveal-delay-3">
+                    <div class="service-card-new service-card" data-service="3">
+                        <div class="service-card-number">03</div>
+                        <div class="service-icon-wrap"><i class="bi bi-receipt-cutoff"></i></div>
+                        <h4 class="service-card-title" data-key="service3">خدمات الضرائب والكمارك</h4>
+                        <p class="service-card-desc" data-key="service3_desc">براءة ذمة، متابعة نظام "سكودا"، الامتثال الضريبي</p>
+                        <button class="service-card-link">
+                            <span data-key="read_more">قراءة المزيد</span>
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card text-center p-4 h-100 fade-in service-card" data-service="4">
-                        <i class="bi bi-briefcase card-icon"></i>
-                        <h5 data-key="service4">الاستيراد والتصدير</h5>
-                        <p data-key="service4_desc">تراخيص، موافقات، ومتابعة المعارض التجارية</p>
-                        <button class="btn btn-outline-primary mt-2" data-key="read_more">قراءة المزيد</button>
+                <div class="col-lg-3 col-md-6 reveal reveal-delay-4">
+                    <div class="service-card-new service-card" data-service="4">
+                        <div class="service-card-number">04</div>
+                        <div class="service-icon-wrap"><i class="bi bi-briefcase"></i></div>
+                        <h4 class="service-card-title" data-key="service4">الاستيراد والتصدير</h4>
+                        <p class="service-card-desc" data-key="service4_desc">تراخيص، موافقات، ومتابعة المعارض التجارية</p>
+                        <button class="service-card-link">
+                            <span data-key="read_more">قراءة المزيد</span>
+                            <i class="bi bi-arrow-left"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-   <!-- Service Modals -->
+    <!-- ─── SERVICE MODALS ─── -->
     <div class="service-modal" id="serviceModal1">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close">&times;</button>
-                <h3 class="modal-title" data-key="service1">تأسيس وتسجيل الشركات</h3>
+        <div class="modal-content-new">
+            <div class="modal-head">
+                <button class="modal-close-btn"><i class="bi bi-x-lg"></i></button>
+                <div class="modal-head-icon"><i class="bi bi-building"></i></div>
+                <h3 data-key="service1">تأسيس وتسجيل الشركات</h3>
             </div>
-            <div class="modal-body">
-                <img src="https://www.smartcorp.in/blog/wp-content/uploads/2019/08/company-registration-2.jpg"
-                    alt="Company Registration" class="service-image">
-                <div class="service-details">
-                    <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
-                    <p data-key="service1_details">نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً
-                        لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة
-                        لاختيار الشكل القانوني المناسب للشركة.</p>
-                </div>
-                <div class="service-features">
-                    <h5 data-key="service_features">مميزات الخدمة</h5>
-                    <ul>
-                        <li data-key="service1_item1">تأسيس الشركات محدودة المسؤولية</li>
-                        <li data-key="service1_item2">تأسيس الشركات المساهمة</li>
-                        <li data-key="service1_item3">فتح فروع الشرکات الأجنبية</li>
-                    </ul>
+            <div class="modal-body-new">
+                <img src="https://www.smartcorp.in/blog/wp-content/uploads/2019/08/company-registration-2.jpg" alt="Company Registration" class="service-img-new">
+                <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
+                <p data-key="service1_details">نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة لاختيار الشكل القانوني المناسب للشركة.</p>
+                <h4 class="mt-4" data-key="service_features">مميزات الخدمة</h4>
+                <div class="modal-features-grid">
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service1_item1">تأسيس الشركات محدودة المسؤولية</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service1_item2">تأسيس الشركات المساهمة</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service1_item3">فتح فروع الشرکات الأجنبية</span></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="service-modal" id="serviceModal2">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close">&times;</button>
-                <h3 class="modal-title" data-key="service2">تسجيل العلامات التجارية</h3>
+        <div class="modal-content-new">
+            <div class="modal-head">
+                <button class="modal-close-btn"><i class="bi bi-x-lg"></i></button>
+                <div class="modal-head-icon"><i class="bi bi-file-earmark-text"></i></div>
+                <h3 data-key="service2">تسجيل العلامات التجارية</h3>
             </div>
-            <div class="modal-body">
-                <img src="https://marn.com/blog/wp-content/uploads/%D8%B5%D9%88%D8%B1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%85%D8%A9-%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9.jpg"
-                    alt="Trademark Registration" class="service-image">
-                <div class="service-details">
-                    <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
-                    <p data-key="service2_details">نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس
-                        الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة
-                        والمتابعة المستمرة.</p>
-                </div>
-                <div class="service-features">
-                    <h5 data-key="service_features">مميزات الخدمة</h5>
-                    <ul>
-                        <li data-key="service2_item1">تسجيل العلامات التجارية محلياً ودولياً</li>
-                        <li data-key="service2_item2">تقديم طلبات براءات الاختراع</li>
-                        <li data-key="service2_item3">تجديد وتسجيل التغييرات على العلامات</li>
-                        <li data-key="service2_item4">متابعة قضايا التعدي على العلامات التجارية</li>
-                    </ul>
+            <div class="modal-body-new">
+                <img src="https://marn.com/blog/wp-content/uploads/%D8%B5%D9%88%D8%B1-%D8%A7%D9%84%D8%B9%D9%84%D8%A7%D9%85%D8%A9-%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9.jpg" alt="Trademark" class="service-img-new">
+                <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
+                <p data-key="service2_details">نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة والمتابعة المستمرة.</p>
+                <h4 class="mt-4" data-key="service_features">مميزات الخدمة</h4>
+                <div class="modal-features-grid">
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service2_item1">تسجيل العلامات التجارية محلياً ودولياً</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service2_item2">تقديم طلبات براءات الاختراع</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service2_item3">تجديد وتسجيل التغييرات على العلامات</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service2_item4">متابعة قضايا التعدي على العلامات التجارية</span></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="service-modal" id="serviceModal3">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close">&times;</button>
-                <h3 class="modal-title" data-key="service3">خدمات الضرائب والكمارك</h3>
+        <div class="modal-content-new">
+            <div class="modal-head">
+                <button class="modal-close-btn"><i class="bi bi-x-lg"></i></button>
+                <div class="modal-head-icon"><i class="bi bi-receipt-cutoff"></i></div>
+                <h3 data-key="service3">خدمات الضرائب والكمارك</h3>
             </div>
-            <div class="modal-body">
-                <img src="https://img.freepik.com/premium-photo/legal-compliance-management-global-trade-focusing-regulatory-adherence-risk-mitigation_1299106-11864.jpg?semt=ais_rp_progressive&w=740&q=80"
-                    alt="Tax and Customs Services" class="service-image">
-                <div class="service-details">
-                    <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
-                    <p data-key="service3_details">نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة
-                        الذمة الضريبية، ومتابعة نظام "سكودا"، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.</p>
-                </div>
-                <div class="service-features">
-                    <h5 data-key="service_features">مميزات الخدمة</h5>
-                    <ul>
-                        <li data-key="service3_item1">إعداد وتقديم الإقرارات الضريبية</li>
-                        <li data-key="service3_item2">متابعة نظام "سكودا" للضرائب</li>
-                        <li data-key="service3_item3">إصدار براءة الذمة الضريبية</li>
-                        <li data-key="service3_item4">التعامل مع الإجراءات الجمركية</li>
-                    </ul>
+            <div class="modal-body-new">
+                <img src="https://img.freepik.com/premium-photo/legal-compliance-management-global-trade-focusing-regulatory-adherence-risk-mitigation_1299106-11864.jpg?w=740&q=80" alt="Tax" class="service-img-new">
+                <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
+                <p data-key="service3_details">نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة الذمة الضريبية، ومتابعة نظام "سكودا"، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.</p>
+                <h4 class="mt-4" data-key="service_features">مميزات الخدمة</h4>
+                <div class="modal-features-grid">
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service3_item1">إعداد وتقديم الإقرارات الضريبية</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service3_item2">متابعة نظام "سكودا" للضرائب</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service3_item3">إصدار براءة الذمة الضريبية</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service3_item4">التعامل مع الإجراءات الجمركية</span></div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="service-modal" id="serviceModal4">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="modal-close">&times;</button>
-                <h3 class="modal-title" data-key="service4">الاستيراد والتصدير</h3>
+        <div class="modal-content-new">
+            <div class="modal-head">
+                <button class="modal-close-btn"><i class="bi bi-x-lg"></i></button>
+                <div class="modal-head-icon"><i class="bi bi-briefcase"></i></div>
+                <h3 data-key="service4">الاستيراد والتصدير</h3>
             </div>
-            <div class="modal-body">
-                <img src="https://t3.ftcdn.net/jpg/04/15/79/88/360_F_415798855_LOSQfTS2pW1ycIPe9ag1MYi0auYC3mbE.jpg"
-                    alt="Import and Export Services" class="service-image">
-                <div class="service-details">
-                    <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
-                    <p data-key="service4_details">نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على
-                        التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.</p>
-                </div>
-                <div class="service-features">
-                    <h5 data-key="service_features">مميزات الخدمة</h5>
-                    <ul>
-                        <li data-key="service4_item1">الحصول على تراخيص الاستيراد والتصدير</li>
-                        <li data-key="service4_item2">متابعة المعارض التجارية المحلية والدولية</li>
-                        <li data-key="service4_item3">تسهيل الإجراءات الجمركية للتجارة</li>
-                        <li data-key="service4_item4">تقديم الاستشارات التجارية الدولية</li>
-                    </ul>
+            <div class="modal-body-new">
+                <img src="https://t3.ftcdn.net/jpg/04/15/79/88/360_F_415798855_LOSQfTS2pW1ycIPe9ag1MYi0auYC3mbE.jpg" alt="Import Export" class="service-img-new">
+                <h4 data-key="service_overview">نظرة عامة على الخدمة</h4>
+                <p data-key="service4_details">نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.</p>
+                <h4 class="mt-4" data-key="service_features">مميزات الخدمة</h4>
+                <div class="modal-features-grid">
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service4_item1">الحصول على تراخيص الاستيراد والتصدير</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service4_item2">متابعة المعارض التجارية المحلية والدولية</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service4_item3">تسهيل الإجراءات الجمركية للتجارة</span></div>
+                    <div class="modal-feature-item"><i class="bi bi-check-circle-fill"></i><span data-key="service4_item4">تقديم الاستشارات التجارية الدولية</span></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
+    <!-- ─── CONTACT ─── -->
+    <section id="contact">
         <div class="container">
-            <h2 class="section-title text-center" data-key="contact_title">اتصل بنا</h2>
-            <div class="row">
-                <div class="col-lg-8 mb-4 mb-lg-0">
-                    <div class="contact-form">
+            <div class="text-center mb-5 reveal">
+                <div class="section-tag" style="justify-content:center;"><i class="bi bi-envelope"></i> <span data-key="contact">اتصل بنا</span></div>
+                <h2 class="section-title-main" data-key="contact_title">اتصل بنا</h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <div class="col-lg-7 reveal">
+                    <div class="contact-card h-100">
                         <form action="https://formspree.io/f/xjkaadbo" method="POST" id="contactForm">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="name" class="form-label" data-key="form_name">الاسم الكامل</label>
-                                    <input type="text" class="form-control" id="name" name="name" required>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" data-key="form_name">الاسم الكامل</label>
+                                    <input type="text" class="form-control" name="name" required>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="email" class="form-label" data-key="form_email">البريد
-                                        الإلكتروني</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="col-md-6">
+                                    <label class="form-label" data-key="form_email">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" data-key="form_phone">رقم الهاتف</label>
+                                    <input type="tel" class="form-control" name="phone" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label" data-key="form_message">الرسالة</label>
+                                    <textarea class="form-control" name="message" rows="5" required></textarea>
+                                </div>
+                                <input type="hidden" name="_subject" value="New Contact Form Submission">
+                                <input type="text" name="_gotcha" style="display:none">
+                                <div class="col-12">
+                                    <button type="submit" class="btn-gold w-100" style="justify-content:center;">
+                                        <i class="bi bi-send-fill"></i>
+                                        <span data-key="form_submit">إرسال الرسالة</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="phone" class="form-label" data-key="form_phone">رقم الهاتف</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="message" class="form-label" data-key="form_message">الرسالة</label>
-                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                            </div>
-
-                            <!-- Formspree hidden fields -->
-                            <input type="hidden" name="_subject" value="New Contact Form Submission">
-                            <input type="text" name="_gotcha" style="display:none">
-
-                            <button type="submit" class="btn btn-primary" data-key="form_submit">إرسال الرسالة</button>
                         </form>
-
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="mb-4">
-                        <h5 data-key="contact_info">معلومات الاتصال</h5>
-                        <p><i class="bi bi-geo-alt-fill me-2"></i> <span data-key="office_address"> أربيل –
-                                العراق</span></p>
-                        <p><i class="bi bi-telephone-fill me-2"></i> <span data-key="phone_number"> 1172651 0750</span>
-                        </p>
-                        <p><i class="bi bi-telephone-fill me-2"></i> <span data-key="phone_number2">07731172626</span>
-                        </p>
-                        <p><i class="bi bi-envelope-fill me-2"></i> <span data-key="email_address">
-                                bashdaraabubakir@gmial.com</span></p>
-                        <p><i class="bi bi-envelope-fill me-2"></i> <span
-                                data-key="email_address2">bashdarahmad9@yahoo.com</span></p>
-                    </div>
 
-                    <div class="mb-4">
-                        <h5 data-key="office_hours">ساعات العمل</h5>
-                        <p data-key="work_days">الأحد - الخميس: 9 صباحاً - 5 مساءً</p>
-                        <p data-key="weekend">الجمعة والسبت: مغلق</p>
-                    </div>
+                <div class="col-lg-5 reveal reveal-delay-2">
+                    <div class="contact-info-card">
+                        <h4 data-key="contact_info">معلومات الاتصال</h4>
+                        <p class="sub">نحن هنا لمساعدتك في كل ما تحتاجه</p>
 
-                    <div>
-                        <h5 data-key="follow_us">تابعنا على</h5>
-                        <div class="social-icons">
-                            <a href="https://www.facebook.com/share/1JvL72rA93/" target="_blank">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                            <a href="https://wa.me/9647501172651" target="_blank">
-                                <i class="bi bi-whatsapp"></i>
-                            </a>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div class="contact-info-text">
+                                <h6 data-key="office_address_label">العنوان</h6>
+                                <span data-key="office_address">أربيل – العراق</span>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+                            <div class="contact-info-text">
+                                <h6 data-key="phone_label">الهاتف</h6>
+                                <span data-key="phone_number">0750 1172651</span>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-telephone-fill"></i></div>
+                            <div class="contact-info-text">
+                                <h6 data-key="phone_label2">الهاتف 2</h6>
+                                <span data-key="phone_number2">07731172626</span>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon"><i class="bi bi-envelope-fill"></i></div>
+                            <div class="contact-info-text">
+                                <h6 data-key="email_label">البريد الإلكتروني</h6>
+                                <span data-key="email_address">bashdaraabubakir@gmail.com</span>
+                            </div>
                         </div>
 
+                        <hr class="contact-divider">
+                        <h6 style="color:var(--gold); margin-bottom:16px; font-size:0.85rem;" data-key="office_hours">ساعات العمل</h6>
+                        <div class="hours-row">
+                            <span class="day" data-key="work_days_label">الأحد - الخميس</span>
+                            <span class="time">9:00 - 17:00</span>
+                        </div>
+                        <div class="hours-row">
+                            <span class="day" data-key="weekend">الجمعة والسبت: مغلق</span>
+                            <span class="time" style="color:rgba(255,255,255,0.35);">—</span>
+                        </div>
+
+                        <div class="social-row">
+                            <a href="https://www.facebook.com/share/1JvL72rA93/" target="_blank" class="social-btn"><i class="bi bi-facebook"></i></a>
+                            <a href="https://wa.me/9647501172651" target="_blank" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="map-container">
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805.1408596678183!2d44.02090506958194!3d36.17717668081095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40072376d1e6384f%3A0xff7b2c19c23e6011!2sAkeed%20express!5e0!3m2!1sen!2siq!4v1772582294519!5m2!1sen!2siq"
-        width="100%" 
-        height="400" 
-        style="border:0; border-radius:10px;" 
-        allowfullscreen="" 
-        loading="lazy">
-    </iframe>
-</div>
-                </div>
+            <div class="map-wrap reveal mt-5">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805.1408596678183!2d44.02090506958194!3d36.17717668081095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40072376d1e6384f%3A0xff7b2c19c23e6011!2sAkeed%20express!5e0!3m2!1sen!2siq!4v1772582294519!5m2!1sen!2siq"
+                    width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ─── FOOTER ─── -->
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 data-key="brand">المحامي بشدار أحمد أبوبكر</h5>
-                    <p data-key="footer_desc">خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات
-                        الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه.</p>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="footer-brand">المحامي <span>بشدار أحمد أبوبكر</span></div>
+                    <p class="footer-desc" data-key="footer_desc">خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه.</p>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                    <h5 data-key="quick_links">روابط سريعة</h5>
-                    <div class="footer-links">
-                        <a href="#home" data-key="home">لصفحة الرئيسية</a>
-                        <a href="#about" data-key="about">عن المحامي</a>
-                        <a href="#services" data-key="services">الخدمات</a>
-                        <a href="#contact" data-key="contact">اتصل بنا</a>
-                    </div>
+                <div class="col-lg-2 col-6">
+                    <div class="footer-heading" data-key="quick_links">روابط سريعة</div>
+                    <a href="#home" class="footer-link" data-key="home">الصفحة الرئيسية</a>
+                    <a href="#about" class="footer-link" data-key="about">عن المحامي</a>
+                    <a href="#services" class="footer-link" data-key="services">الخدمات</a>
+                    <a href="#contact" class="footer-link" data-key="contact">اتصل بنا</a>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 data-key="our_services">خدماتنا</h5>
-                    <div class="footer-links">
-                        <a href="#" data-key="service1">تأسيس وتسجيل الشركات</a>
-                        <a href="#" data-key="service2">تسجيل العلامات التجارية</a>
-                        <a href="#" data-key="service3">خدمات الضرائب والكمارك</a>
-                        <a href="#" data-key="service4">الاستيراد والتصدير</a>
-                    </div>
+                <div class="col-lg-3 col-6">
+                    <div class="footer-heading" data-key="our_services">خدماتنا</div>
+                    <a href="#" class="footer-link" data-key="service1">تأسيس وتسجيل الشركات</a>
+                    <a href="#" class="footer-link" data-key="service2">تسجيل العلامات التجارية</a>
+                    <a href="#" class="footer-link" data-key="service3">خدمات الضرائب والكمارك</a>
+                    <a href="#" class="footer-link" data-key="service4">الاستيراد والتصدير</a>
                 </div>
                 <div class="col-lg-3">
-                    <h5 data-key="contact_info">معلومات الاتصال</h5>
-                    <p><i class="bi bi-geo-alt-fill me-2"></i> <span data-key="office_address">أربيل – العراق</span></p>
-                    <p><i class="bi bi-telephone-fill me-2"></i> <span data-key="phone_number">1172651 0750</span></p>
-                    <p><i class="bi bi-telephone-fill me-2"></i> <span data-key="phone_number2">07731172626</span></p>
-                    <p><i class="bi bi-envelope-fill me-2"></i> <span
-                            data-key="email_address">bashdaraabubakir@gmial.com</span></p>
-                    <p><i class="bi bi-envelope-fill me-2"></i> <span
-                            data-key="email_address2">bashdarahmad9@yahoo.com</span></p>
+                    <div class="footer-heading" data-key="contact_info">معلومات الاتصال</div>
+                    <div class="footer-contact-item"><i class="bi bi-geo-alt-fill"></i><span data-key="office_address">أربيل – العراق</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><span data-key="phone_number">0750 1172651</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-telephone-fill"></i><span data-key="phone_number2">07731172626</span></div>
+                    <div class="footer-contact-item"><i class="bi bi-envelope-fill"></i><span data-key="email_address">bashdaraabubakir@gmail.com</span></div>
                 </div>
             </div>
-            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p data-key="copyright">© 2023 المحامي بشدار أحمد أبوبكر. جميع الحقوق محفوظة.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="social-icons">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-linkedin"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                    </div>
+            <hr class="footer-divider">
+            <div class="footer-bottom">
+                <span class="footer-copy" data-key="copyright">© 2023 المحامي بشدار أحمد أبوبكر. جميع الحقوق محفوظة.</span>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/share/1JvL72rA93/" target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://wa.me/9647501172651" target="_blank"><i class="bi bi-whatsapp"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Language Switcher Script -->
     <script>
-        // Translation data
-        const translations = {
-            ar: {
-                // Navigation
-                brand: "المحامي بشدار أحمد أبوبكر",
-                home: "الصفحة الرئيسية",
-                about: "عن المحامي",
-                services: "الخدمات",
-                contact: "اتصل بنا",
+    // ─── TRANSLATIONS ───────────────────────────────────────────────────────
+    const translations = {
+        ar: {
+            brand: "المحامي بشدار أحمد أبوبكر",
+            home: "الصفحة الرئيسية", about: "عن المحامي", services: "الخدمات", contact: "اتصل بنا",
+            hero_title: "المحامي بشدار أحمد أبوبكر",
+            hero_subtitle: "خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه. نقدّم خدمات قانونية متكاملة لدعم المستثمرين والشركات والأفراد وفق أحدث التشريعات.",
+            contact_btn: "اتصل بنا الآن",
+            about_desc_short: "محامٍ مجاز · نقابة المحامين · كردستان / العراق",
+            about_title: "عن المحامي", about_name: "الأستاذ بشدار أحمد أبوبكر",
+            about_desc: "محامٍ مجاز وعضو نقابة المحامين في إقليم كردستان / العراق. متخصص في تأسيس الشركات و تسجيل العلامات التجارية، ومتابعة الامتثال الضريبي والكمركي.",
+            about_details: "خبرة عملية واسعة في التعامل مع: دائرة تسجيل الشركات في إقليم وبغداد، الهيئة العامة للضرائب في بغداد واقليم، الهيئة العامة للكمارك في بغداد واقليم.",
+            vision: "الرؤية", vision_text: "تقديم استشارات قانونية دقيقة وموثوقة وفق المعايير المحلية والدولية.",
+            mission: "الرسالة", mission_text: "دعم قطاع الأعمال والمستثمرين من خلال حلول قانونية عملية وفعّالة.",
+            years_exp: "سنة خبرة", clients: "عميل راضٍ", services_count: "تخصصات قانونية",
+            verified: "محامٍ مجاز",
+            specialty1_desc: "تأسيس وتسجيل الشركات (محلية وأجنبية)",
+            specialty2_desc: "تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي",
+            specialty3_desc: "براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي",
+            services_title: "الخدمات",
+            service1: "تأسيس وتسجيل الشركات", service1_desc: "تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون العراقي",
+            service1_details: "نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة لاختيار الشكل القانوني المناسب للشركة.",
+            service1_item1: "تأسيس الشركات محدودة المسؤولية", service1_item2: "تأسيس الشركات المساهمة", service1_item3: "فتح فروع الشرکات الأجنبية",
+            service2: "تسجيل العلامات التجارية", service2_desc: "تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي",
+            service2_details: "نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة والمتابعة المستمرة.",
+            service2_item1: "تسجيل العلامات التجارية محلياً ودولياً", service2_item2: "تقديم طلبات براءات الاختراع", service2_item3: "تجديد وتسجيل التغييرات على العلامات", service2_item4: "متابعة قضايا التعدي على العلامات التجارية",
+            service3: "خدمات الضرائب والكمارك", service3_desc: "براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي",
+            service3_details: "نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة الذمة الضريبية، ومتابعة نظام 'سكودا'، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.",
+            service3_item1: "إعداد وتقديم الإقرارات الضريبية", service3_item2: "متابعة نظام 'سكودا' للضرائب", service3_item3: "إصدار براءة الذمة الضريبية", service3_item4: "التعامل مع الإجراءات الجمركية",
+            service4: "الاستيراد والتصدير", service4_desc: "تراخيص، موافقات، ومتابعة المعارض التجارية",
+            service4_details: "نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.",
+            service4_item1: "الحصول على تراخيص الاستيراد والتصدير", service4_item2: "متابعة المعارض التجارية المحلية والدولية", service4_item3: "تسهيل الإجراءات الجمركية للتجارة", service4_item4: "تقديم الاستشارات التجارية الدولية",
+            read_more: "قراءة المزيد", service_overview: "نظرة عامة على الخدمة", service_features: "مميزات الخدمة",
+            contact_title: "اتصل بنا", form_name: "الاسم الكامل", form_email: "البريد الإلكتروني", form_phone: "رقم الهاتف",
+            form_message: "الرسالة", form_submit: "إرسال الرسالة", contact_info: "معلومات الاتصال",
+            office_address: "أربيل – العراق", office_address_label: "العنوان", phone_label: "الهاتف", phone_label2: "الهاتف 2", email_label: "البريد الإلكتروني",
+            phone_number: "0750 1172651", phone_number2: "07731172626", email_address: "bashdaraabubakir@gmail.com",
+            office_hours: "ساعات العمل", work_days: "الأحد - الخميس: 9 صباحاً - 5 مساءً", work_days_label: "الأحد - الخميس", weekend: "الجمعة والسبت: مغلق",
+            follow_us: "تابعنا على", footer_desc: "خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه.",
+            quick_links: "روابط سريعة", our_services: "خدماتنا", copyright: "© 2023 المحامي بشدار أحمد أبوبكر. جميع الحقوق محفوظة."
+        },
+        ku: {
+            brand: "پارێزەر بشدار ئەحمەد ئەبوبەکر",
+            home: "پەڕەی سەرەکی", about: "دەربارەی پارێزەر", services: "خزمەتگوزاریەکان", contact: "پەیوەندیمان پێوەبکە",
+            hero_title: "پارێزەر بەشدار ئەحمەد ئەبوبەکر",
+            hero_subtitle: "خزمەتی یاسایی پتەو لە دامەزراندنی کۆمپانیا، تۆمارکردنی هێما بازرگانییەکان، مامەڵەکانى باج و گومررگ، و کردارە بازرگانییەکان لە ناوخۆی عێراق و دەرەوە. خزمەتگوزاری یاسایی تەواو پێشکەش دەکەین بۆ پشتیوانی لە وەبەرهێنەران و کۆمپانیاکان و کەسی تاک بەپێی نوێترین یاساکان.",
+            contact_btn: "ئێستا پەیوەندیمان پێوەبکە",
+            about_desc_short: "پارێزەری ڕێگەپێدراو · سەندیکای پارێزەران · کوردستان / عێراق",
+            about_title: "دەربارەی پارێزەر", about_name: "بشدار ئەحمەد ئەبوبەکر",
+            about_desc: "پارێزەری ڕێگەپێدراو و ئەندامی سەندیکای پارێزەرانی هەرێمی کوردستان / عێراق. پسپۆڕ لە دامەزراندنی کۆمپانیاکان و تۆمارکردنی هێما بازرگانییەکان، و بەدواداچوونی پابەندبوونی باجی و گومرگی.",
+            about_details: "ئەزموونی کردەیی فراوان لە مامەڵەکردن لەگەڵ: بەڕێوەبەرایەتی تۆمارکردنی کۆمپانیاکان لە هەرێم و بەغدا، دەستەی گشتی باجەکان لە بەغدا و هەرێم، دەستەی گشتی گومرگ لە بەغدا و هەرێم.",
+            vision: "دیدگا", vision_text: "پێشکەشکردنی ڕاوێژی یاسایی ورد و جێی متمانە بەپێی پێوەرە ناوخۆیی و نێودەوڵەتییەکان.",
+            mission: "پەیام", mission_text: "پاڵپشتیکردنی کەرتی کار و وەبەرهێنەران لە ڕێگەی دابینکردنی چارەسەری یاسایی کردەیی و کاریگەر.",
+            years_exp: "ساڵی ئەزموون", clients: "کڕیاری دڵخۆش", services_count: "پسپۆڕی یاسایی",
+            verified: "پارێزەری ڕێگەپێدراو",
+            specialty1_desc: "دامەزراندن و تۆمارکردنی کۆمپانیاکان (ناوخۆیی و بیانی)",
+            specialty2_desc: "تۆمارکردنی هێما بازرگانییەکان و (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی نیس",
+            specialty3_desc: "ئەستۆپاکی باج، بەدواداچوونی سیستەمی 'ئاسیکۆدا'، پابەندبوونی باج",
+            services_title: "خزمەتگوزاریەکان",
+            service1: "دامەزراندن و تۆمارکردنی کۆمپانیاکان", service1_desc: "دامەزراندن و تۆمارکردنی کۆمپانیاکان (ناوخۆیی و بیانی) بە هەموو جۆرەکانیان بەپێی یاسای عێراق",
+            service1_details: "خزمەتگوزاریی دامەزراندن و تۆمارکردنی کۆمپانیاکان بە هەموو جۆرەکانیانەوە (ناوخۆیی و بیانی) بەپێی یاساکانی عێراق پێشکەش دەکەین. گەرەنتی ئەنجامدانی ڕێکارەکان دەکەین بە وردی و خێرایی، لەگەڵ پێشکەشکردنی ڕاوێژی یاسایی پێویست بۆ هەڵبژاردنی شێوازی یاسایی گونجاو بۆ کۆمپانیاکە.",
+            service1_item1: "دامەزراندنی کۆمپانیاکانی بەرپرسیارێتی سنوردار", service1_item2: "دامەزراندنی کۆمپانیا پشکیەکان", service1_item3: "کردنەوەی لقی کۆمپانیا بیانییەکان",
+            service2: "تۆمارکردنی هێما بازرگانییەکان", service2_desc: "تۆمارکردنی هێما بازرگانییەکان و (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی نیس",
+            service2_details: "خزمەتگوزاریی تۆمارکردنی هێما بازرگانییەکان و (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی 'نیس' پێشکەش دەکەین. ئێمە گەرەنتی پاراستنی مافی خاوەندارێتی فیکری بۆ کڕیارەکانمان دەکەین لە ڕێگەی ڕێکارە یاساییە دروستەکان و بەدواداچوونی بەردەوام.",
+            service2_item1: "تۆمارکردنی هێما بازرگانییەکان لە ناوخۆ و دەرەوە", service2_item2: "پێشکەشکردنی داواکاری بۆ (بەرائەی ئیختراع)", service2_item3: "نوێکردنەوە و تۆمارکردنی گۆڕانکارییەکان لەسەر هێماکان", service2_item4: "بەدواداچوونی کەیسەکانی پێشێلکردنی هێما بازرگانییەکان",
+            service3: "خزمەتگوزاریەکانی باج و گومرگ", service3_desc: "ئەستۆپاکی باج، بەدواداچوونی سیستەمی 'ئاسیکۆدا'، پابەندبوونی باج",
+            service3_details: "خزمەتگوزاریی گشتگیر لە بواری باج و گومرگدا پێشکەش دەکەین، لەوانەش دەرکردنی ئەستۆپاکی باج، و بەدواداچوونی سیستەمی 'ئاسیکۆدا'، و گەرەنتی پابەندبوون بە یاسا و ڕێساکانی باج و گومرگ.",
+            service3_item1: "ئامادەکردن و پێشکەشکردنی ڕاپۆرتی باج", service3_item2: "بەدواداچوونی سیستەمی 'ئاسیکۆدا' بۆ باجەکان", service3_item3: "دەرکردنی ئەستۆپاکی باج", service3_item4: "ڕاپەڕاندنی ڕێکارە گومرگییەکان",
+            service4: "هەناردەکردن و هاوردەکردن", service4_desc: "مۆڵەت، ڕەزامەندی، و بەدواداچوونی پێشانگە بازرگانییەکان",
+            service4_details: "خزمەتگوزاریی تەواوکار لە بواری هەناردەکردن و هاوردەکردندا پێشکەش دەکەین، لەوانەش بەدەستهێنانی مۆڵەت و ڕەزامەندییە پێویستەکان، و بەدواداچوونی پێشانگە بازرگانییەکان، و ئاسانکاری بۆ ڕێکارە گومرگی و بازرگانییەکان.",
+            service4_item1: "بەدەستهێنانی مۆڵەتی هەناردەکردن و هاوردەکردن", service4_item2: "بەدواداچوونی پێشانگە بازرگانییە ناوخۆیی و نێودەوڵەتییەکان", service4_item3: "ئاسانکاری لە ڕێکارە گومرگییەکان بۆ بازرگانی", service4_item4: "پێشکەشکردنی ڕاوێژی بازرگانی نێودەوڵەتی",
+            read_more: "زیاتر بخوێنەوە", service_overview: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە", service_features: "تایبەتمەندییەکانی خزمەتگوزارییەکە",
+            contact_title: "پەیوەندیمان پێوەبکە", form_name: "ناوی تەواو", form_email: "ئیمەیڵ", form_phone: "ژمارەی تەلەفۆن",
+            form_message: "پەیام", form_submit: "ناردنی پەیام", contact_info: "زانیاری پەیوەندی",
+            office_address: "هەولێر – عێراق", office_address_label: "ناونیشان", phone_label: "تەلەفۆن", phone_label2: "تەلەفۆن 2", email_label: "ئیمەیڵ",
+            phone_number: "0750 1172651", phone_number2: "07731172626", email_address: "bashdaraabubakir@gmail.com",
+            office_hours: "کاتەکانی کار", work_days: "یەکشەممە - پێنجشەممە: ٩ی بەیانی - ٥ی ئێوارە", work_days_label: "یەکشەممە - پێنجشەممە", weekend: "هەینی و شەممە: داخراوە",
+            follow_us: "شوێنمان بکەوە", footer_desc: "خزمەتی یاسایی پتەو لە دامەزراندنی کۆمپانیا، تۆمارکردنی هێما بازرگانییەکان، مامەڵەکانى باج و گومرگ، و کردارە بازرگانییەکان لە ناوخۆی عێراق و دەرەوە.",
+            quick_links: "بەستەرە خێراکان", our_services: "خزمەتگوزاریەکانمان", copyright: "© ٢٠٢٣ پارێزەر بشدار ئەحمەد ئەبوبەکر. هەموو مافەکان پارێزراون."
+        },
+        en: {
+            brand: "Lawyer Bashdar Ahmed Abubakir",
+            home: "Home", about: "About", services: "Services", contact: "Contact",
+            hero_title: "Lawyer Bashdar Ahmed Abubakir",
+            hero_subtitle: "Solid legal experience in company establishment, trademark registration, tax and customs transactions, and commercial procedures inside and outside Iraq. We provide integrated legal services to support investors, companies and individuals in accordance with the latest legislation.",
+            contact_btn: "Contact Us Now",
+            about_desc_short: "Licensed Lawyer · Bar Association · Kurdistan / Iraq",
+            about_title: "About the Lawyer", about_name: "Mr. Bashdar Ahmed Abubakir",
+            about_desc: "Licensed lawyer and member of the Bar Association in the Kurdistan Region / Iraq. Specialized in company establishment, trademark registration, and follow-up of tax and customs compliance.",
+            about_details: "Extensive practical experience in dealing with: Company Registration Department in the Region and Baghdad, General Tax Authority in Baghdad and the Region, General Customs Authority in Baghdad and the Region.",
+            vision: "Vision", vision_text: "Providing accurate and reliable legal advice in accordance with local and international standards.",
+            mission: "Mission", mission_text: "Supporting the business sector and investors through practical and effective legal solutions.",
+            years_exp: "Years Experience", clients: "Happy Clients", services_count: "Legal Specialties",
+            verified: "Licensed Lawyer",
+            specialty1_desc: "Establishment and registration of companies (local and foreign)",
+            specialty2_desc: "Trademark and patent registration according to the international Nice classification",
+            specialty3_desc: "Tax clearance, follow-up of the 'Skoda' system, tax compliance",
+            services_title: "Services",
+            service1: "Company Establishment & Registration", service1_desc: "Establishment and registration of companies (local and foreign) of all types in accordance with Iraqi law",
+            service1_details: "We provide establishment and registration services for all types of companies (local and foreign) in accordance with the provisions of Iraqi law. We ensure that the procedures are completed accurately and quickly, with the necessary legal consultations to choose the appropriate legal form for the company.",
+            service1_item1: "Establishment of limited liability companies", service1_item2: "Opening of joint stock companies", service1_item3: "Establishment of branches of foreign companies",
+            service2: "Trademark Registration", service2_desc: "Trademark and patent registration according to the international Nice classification",
+            service2_details: "We provide trademark and patent registration services according to the international Nice classification. We ensure the protection of our clients' intellectual property rights through correct legal procedures and continuous follow-up.",
+            service2_item1: "Trademark registration locally and internationally", service2_item2: "Submission of patent applications", service2_item3: "Renewal and registration of changes to trademarks", service2_item4: "Follow-up of trademark infringement cases",
+            service3: "Tax & Customs Services", service3_desc: "Tax clearance, follow-up of the 'Skoda' system, tax compliance",
+            service3_details: "We provide comprehensive services in the field of taxes and customs, including issuing tax clearance certificates, following up on the 'Skoda' system, and ensuring compliance with tax and customs laws and regulations.",
+            service3_item1: "Preparation and submission of tax returns", service3_item2: "Follow-up of the 'Skoda' tax system", service3_item3: "Issuance of tax clearance certificates", service3_item4: "Handling customs procedures",
+            service4: "Import & Export", service4_desc: "Licenses, approvals, and follow-up of trade fairs",
+            service4_details: "We provide integrated services in the field of import and export, including obtaining necessary licenses and approvals, following up on trade fairs, and facilitating customs and commercial procedures.",
+            service4_item1: "Obtaining import and export licenses", service4_item2: "Follow-up of local and international trade fairs", service4_item3: "Facilitating customs procedures for trade", service4_item4: "Providing international business consultations",
+            read_more: "Read More", service_overview: "Service Overview", service_features: "Service Features",
+            contact_title: "Contact Us", form_name: "Full Name", form_email: "Email Address", form_phone: "Phone Number",
+            form_message: "Message", form_submit: "Send Message", contact_info: "Contact Information",
+            office_address: "Erbil – Iraq", office_address_label: "Address", phone_label: "Phone", phone_label2: "Phone 2", email_label: "Email",
+            phone_number: "0750 1172651", phone_number2: "07731172626", email_address: "bashdaraabubakir@gmail.com",
+            office_hours: "Working Hours", work_days: "Sunday - Thursday: 9 AM - 5 PM", work_days_label: "Sunday - Thursday", weekend: "Friday & Saturday: Closed",
+            follow_us: "Follow Us", footer_desc: "Solid legal experience in company establishment, trademark registration, tax and customs transactions, and commercial procedures inside and outside Iraq.",
+            quick_links: "Quick Links", our_services: "Our Services", copyright: "© 2023 Lawyer Bashdar Ahmed Abubakir. All Rights Reserved."
+        }
+    };
 
-                // Hero Section
-                hero_title: "المحامي بشدار أحمد أبوبكر",
-                hero_subtitle: "خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه. نقدّم خدمات قانونية متكاملة لدعم المستثمرين والشركات والأفراد وفق أحدث التشريعات.",
-                contact_btn: "اتصل بنا الآن",
+    // ─── LANGUAGE SWITCHER ──────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const savedLang = localStorage.getItem('selectedLang') || 'ar';
+        applyLang(savedLang);
+        document.querySelector(`[data-lang="${savedLang}"]`)?.classList.add('active');
 
-                // About Section
-                about_title: "عن المحامي",
-                about_name: "الأستاذ بشدار أحمد أبوبكر",
-                about_desc: "محامٍ مجاز وعضو نقابة المحامين في إقليم كردستان / العراق. متخصص في تأسيس الشركات و تسجيل العلامات التجارية، ومتابعة الامتثال الضريبي والكمركي.",
-                about_details: "خبرة عملية واسعة في التعامل مع: دائرة تسجيل الشركات في إقليم وبغداد، الهيئة العامة للضرائب في بغداد واقليم، الهيئة العامة للكمارك في بغداد واقليم.",
-                vision: "الرؤية",
-                vision_text: "تقديم استشارات قانونية دقيقة وموثوقة وفق المعايير المحلية والدولية.",
-                mission: "الرسالة",
-                mission_text: "دعم قطاع الأعمال والمستثمرين من خلال حلول قانونية عملية وفعّالة.",
-                specialty1: "تأسيس وتسجيل الشركات",
-                specialty1_desc: "تأسيس وتسجيل الشركات (محلية وأجنبية)",
-                specialty2: "تسجيل العلامات التجارية",
-                specialty2_desc: "تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي",
-                specialty3: "الخدمات الضريبية والجمركية",
-                specialty3_desc: "براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي",
-
-                // Services Section
-                services_title: "الخدمات",
-                service1: "تأسيس وتسجيل الشركات",
-                service1_desc: "تأسيس وتسجيل الشركات (محلية وأجنبية) بكافة أنواعها وفق القانون العراقي",
-                service1_details: "نقدم خدمات تأسيس وتسجيل الشركات بكافة أنواعها (محلية وأجنبية) وفقاً لأحكام القانون العراقي. نضمن إتمام الإجراءات بدقة وسرعة، مع تقديم الاستشارات القانونية اللازمة لاختيار الشكل القانوني المناسب للشركة.",
-                service1_item1: "تأسيس الشركات محدودة المسؤولية",
-                service1_item2: "تأسيس الشركات المساهمة",
-                service1_item3: "فتح فروع الشرکات الأجنبية",
-                service2: "تسجيل العلامات التجارية",
-                service2_desc: "تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي",
-                service2_details: "نقدم خدمات تسجيل العلامات التجارية وبراءات الاختراع وفق تصنيف نيس الدولي. نحن نضمن حماية حقوق الملكية الفكرية لعملائنا من خلال الإجراءات القانونية الصحيحة والمتابعة المستمرة.",
-                service2_item1: "تسجيل العلامات التجارية محلياً ودولياً",
-                service2_item2: "تقديم طلبات براءات الاختراع",
-                service2_item3: "تجديد وتسجيل التغييرات على العلامات",
-                service2_item4: "متابعة قضايا التعدي على العلامات التجارية",
-                service3: "خدمات الضرائب والكمارك",
-                service3_desc: "براءة ذمة، متابعة نظام 'سكودا'، الامتثال الضريبي",
-                service3_details: "نقدم خدمات شاملة في مجال الضرائب والكمارك، بما في ذلك إصدار براءة الذمة الضريبية، ومتابعة نظام 'سكودا'، وضمان الامتثال للقوانين واللوائح الضريبية والجمركية.",
-                service3_item1: "إعداد وتقديم الإقرارات الضريبية",
-                service3_item2: "متابعة نظام 'سکودا' للضرائب",
-                service3_item3: "إصدار براءة الذمة الضريبية",
-                service3_item4: "التعامل مع الإجراءات الجمركية",
-                service4: "الاستيراد والتصدير",
-                service4_desc: "تراخيص، موافقات، ومتابعة المعارض التجارية",
-                service4_details: "نقدم خدمات متكاملة في مجال الاستيراد والتصدير، تشمل الحصول على التراخيص والموافقات اللازمة، ومتابعة المعارض التجارية، وتسهيل الإجراءات الجمركية والتجارية.",
-                service4_item1: "الحصول على تراخيص الاستيراد والتصدير",
-                service4_item2: "متابعة المعارض التجارية المحلية والدولية",
-                service4_item3: "تسهيل الإجراءات الجمركية للتجارة",
-                service4_item4: "تقديم الاستشارات التجارية الدولية",
-
-                // Contact Section
-                contact_title: "اتصل بنا",
-                form_name: "الاسم الكامل",
-                form_email: "البريد الإلكتروني",
-                form_phone: "رقم الهاتف",
-                form_message: "الرسالة",
-                form_submit: "إرسال الرسالة",
-                contact_info: "معلومات الاتصال",
-                office_address: " أربيل – العراق",
-                phone_number: " 1172651 0750",
-                phone_number2: "07731172626",
-                email_address: " bashdaraabubakir@gmial.com",
-                email_address2: "bashdarahmad9@yahoo.com",
-                office_hours: "ساعات العمل",
-                work_days: "الأحد - الخميس: 9 صباحاً - 5 مساءً",
-                weekend: "الجمعة والسبت: مغلق",
-                follow_us: "تابعنا على",
-
-                // Footer
-                footer_desc: "خبرة قانونية رصينة في تأسيس الشركات، تسجيل العلامات التجارية، المعاملات الضريبية والجمركية، والإجراءات التجارية داخل العراق وخارجه.",
-                quick_links: "روابط سريعة",
-                our_services: "خدماتنا",
-                copyright: "© 2023 المحامي بشدار أحمد أبوبكر. جميع الحقوق محفوظة.",
-
-                // Service Modal
-                read_more: "قراءة المزيد",
-                service_overview: "نظرة عامة على الخدمة",
-                service_features: "مميزات الخدمة"
-            },
-            ku: {
-                // Navigation
-                brand: "پارێزەر بشدار ئەحمەد ئەبوبەکر",
-                home: "پەڕەی سەرەکی",
-                about: "دەربارەی پارێزەر",
-                services: "خزمەتگوزاریەکان",
-                contact: "پەیوەندیمان پێوەبکە",
-
-                // Hero Section
-                hero_title: " پارێزەر بەشدار ئەحمەد ئەبوبەکر",
-                hero_subtitle: "خزمەتی یاسایی پتەو لە دامەزراندنی کۆمپانیا، تۆمارکردنی ‌هێما بازرگانییەکان، مامەڵەکانى باج و گومررگ، و کردارە بازرگانییەکان لە ناوخۆی عێراق و دەرەوە. خزمەتگوزاری یاسایی تەواو پێشکەش دەکەین بۆ پشتیوانی لە وەبەرهێنەران و کۆمپانیاکان و کەسی تاک بەپێی نوێترین یاساکان.",
-                contact_btn: "ئێستا پەیوەندیمان پێوەبکە",
-
-                // About Section - UPDATED
-                about_title: "دەربارەی پارێزەر",
-                about_name: "بشدار ئەحمەد ئەبوبەکر",
-                about_desc: "پارێزەری ڕێگەپێدراو و ئەندامی سەندیکای پارێزەرانی هەرێمی کوردستان / عێراق. پسپۆڕ لە دامەزراندنی کۆمپانیاکان و تۆمارکردنی هێما بازرگانییەکان، و بەدواداچوونی پابەندبوونی باجی و گومرگی.",
-                about_details: "ئەزموونی کردەیی فراوان لە مامەڵەکردن لەگەڵ: بەڕێوەبەرایەتی تۆمارکردنی کۆمپانیاکان لە هەرێم و بەغدا، دەستەی گشتی باجەکان لە بەغدا و هەرێم، دەستەی گشتی گومرگ لە بەغدا و هەرێم.",
-                vision: "دیدگا",
-                vision_text: "پێشکەشکردنی ڕاوێژی یاسایی ورد و جێی متمانە بەپێی پێوەرە ناوخۆیی و نێودەوڵەتییەکان.",
-                mission: "پەیام",
-                mission_text: "پاڵپشتیکردنی کەرتی کار و وەبەرهێنەران لە ڕێگەی دابینکردنی چارەسەری یاسایی کردەیی و کاریگەر.",
-                specialty1: "دامەزراندن و تۆمارکردنی کۆمپانیاکان",
-                specialty1_desc: "دامەزراندن و تۆمارکردنی کۆمپانیاکان (ناوخۆیی و بیانی)",
-                specialty2: "تۆمارکردنیهێما بازرگانییەکان",
-                specialty2_desc: "تۆمارکردنیهێما  بازرگانییەکان و (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی نیس ",
-                specialty3: "خزمەتگوزاریەکانی باج و گومرگ",
-                specialty3_desc: "ئەستۆپاکی باج، بەدواداچوونی سیستەمی 'ئاسیکۆدا'، پابەندبوونی باج",
-
-                // Services Section - UPDATED
-                services_title: "خزمەتگوزاریەکان",
-                service1: "دامەزراندن و تۆمارکردنی کۆمپانیاکان",
-                service1_desc: "دامەزراندن و تۆمارکردنی کۆمپانیاکان (ناوخۆیی و بیانی) بە هەموو جۆرەکانیان بەپێی یاسای عێراق",
-                service1_details: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە خزمەتگوزاریی دامەزراندن و تۆمارکردنی کۆمپانیاکان بە هەموو جۆرەکانیانەوە (ناوخۆیی و بیانی) بەپێی یاساکانی عێراق پێشکەش دەکەین. گەرەنتی ئەنجامدانی ڕێکارەکان دەکەین بە وردی و خێرایی، لەگەڵ پێشکەشکردنی ڕاوێژی یاسایی پێویست بۆ هەڵبژاردنی شێوازی یاسایی گونجاو بۆ کۆمپانیاکە.",
-                service1_item1: "دامەزراندنی کۆمپانیاکانی بەرپرسیارێتی سنوردار",
-                service1_item2: "دامەزراندنی کۆمپانیا پشکیەکان",
-                service1_item3: "کردنەوەی لقی کۆمپانیا بیانییەکان",
-                service2: "تۆمارکردنی هێما بازرگانییەکان",
-                service2_desc: " تۆمارکردنی هێما  بازرگانییەکان و (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی نیس",
-                service2_details: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە خزمەتگوزاریی تۆمارکردنی هێما بازرگانییەکان و  (بەرائەی ئیختراع) بەپێی پۆلێنکردنی نێودەوڵەتی 'نیس' پێشکەش دەکەین. ئێمە گەرەنتی پاراستنی مافی خاوەندارێتی فیکری بۆ کڕیارەکانمان دەکەین لە ڕێگەی ڕێکارە یاساییە دروستەکان و بەدواداچوونی بەردەوام.",
-                service2_item1: "تۆمارکردنی هێما بازرگانییەکان لە ناوخۆ و دەرەوە",
-                service2_item2: "پێشکەشکردنی داواکاری بۆ (بەرائەی ئیختراع)",
-                service2_item3: "نوێکردنەوە و تۆمارکردنی گۆڕانکارییەکان لەسەرهێماکان",
-                service2_item4: "بەدواداچوونی کەیسەکانی پێشێلکردنی هێما بازرگانییەکان",
-                service3: "خزمەتگوزاریەکانی باج و گومرگ",
-                service3_desc: "ئەستۆپاکی باج، بەدواداچوونی سیستەمی 'ئاسیکۆدا'، پابەندبوونی باج",
-                service3_details: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە خزمەتگوزاریی گشتگیر لە بواری باج و گومرگدا پێشکەش دەکەین، لەوانەش دەرکردنی ئەستۆپاکی باج، و بەدواداچوونی سیستەمی 'ئاسیکۆدا'، و گەرەنتی پابەندبوون بە یاسا و ڕێساکانی باج و گومرگ.",
-                service3_item1: "ئامادەکردن و پێشکەشکردنی ڕاپۆرتی باج",
-                service3_item2: "بەدواداچوونی سیستەمی 'ئاسیکۆدا' بۆ باجەکان",
-                service3_item3: "دەرکردنی ئەستۆپاکی باج",
-                service3_item4: "ڕاپەڕاندنی ڕێکارە گومرگییەکان",
-                service4: "هەناردەکردن و هاوردەکردن",
-                service4_desc: "مۆڵەت، ڕەزامەندی، و بەدواداچوونی پێشانگە بازرگانییەکان",
-                service4_details: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە خزمەتگوزاریی تەواوکار لە بواری هەناردەکردن و هاوردەکردندا پێشکەش دەکەین، لەوانەش بەدەستهێنانی مۆڵەت و ڕەزامەندییە پێویستەکان، و بەدواداچوونی پێشانگە بازرگانییەکان، و ئاسانکاری بۆ ڕێکارە گومرگی و بازرگانییەکان.",
-                service4_item1: "بەدەستهێنانی مۆڵەتی هەناردەکردن و هاوردەکردن",
-                service4_item2: "بەدواداچوونی پێشانگە بازرگانییە ناوخۆیی و نێودەوڵەتییەکان",
-                service4_item3: "ئاسانکاری لە ڕێکارە گومرگییەکان بۆ بازرگانی",
-                service4_item4: "پێشکەشکردنی ڕاوێژی بازرگانی نێودەوڵەتی",
-
-                // Contact Section
-                contact_title: "پەیوەندیمان پێوەبکە",
-                form_name: "ناوی تەواو",
-                form_email: "ئیمەیڵ",
-                form_phone: "ژمارەی تەلەفۆن",
-                form_message: "پەیام",
-                form_submit: "ناردنی پەیام ",
-                contact_info: "زانیاری پەیوەندی",
-                office_address: " هەولێر – عێراق",
-                phone_number: " 1172651 0750",
-                phone_number2: "07731172626",
-                email_address: " bashdaraabubakir@gmial.com",
-                email_address2: "bashdarahmad9@yahoo.com",
-                office_hours: "کاتەکانی کار",
-                work_days: "یەکشەممە - پێنجشەممە: ٩ی بەیانی - ٥ی ئێوارە",
-                weekend: "هەینی و شەممە: داخراوە",
-                follow_us: "شوێنمان بکەوە",
-
-                // Footer
-                footer_desc: "خزمەتی یاسایی پتەو لە دامەزراندنی کۆمپانیا، تۆمارکردنیهێما بازرگانییەکان، مامەڵەکانى باج و گومرگ، و کردارە بازرگانییەکان لە ناوخۆی عێراق و دەرەوە.",
-                quick_links: "بەستەرە خێراکان",
-                our_services: "خزمەتگوزاریەکانمان",
-                copyright: "© ٢٠٢٣ پارێزەر بشدار ئەحمەد ئەبوبەکر. هەموو مافەکان پارێزراون.",
-
-                // Service Modal
-                read_more: "زیاتر بخوێنەوە",
-                service_overview: "تێڕوانینێکی گشتی بۆ خزمەتگوزارییەکە",
-                service_features: "تایبەتمەندییەکانی خزمەتگوزارییەکە"
-            },
-            en: {
-                // Navigation
-                brand: "Lawyer Bashdar Ahmed Abubakir",
-                home: "Home",
-                about: "About",
-                services: "Services",
-                contact: "Contact",
-
-                // Hero Section
-                hero_title: "Lawyer Bashdar Ahmed Abubakir",
-                hero_subtitle: "Solid legal experience in company establishment, trademark registration, tax and customs transactions, and commercial procedures inside and outside Iraq. We provide integrated legal services to support investors, companies and individuals in accordance with the latest legislation.",
-                contact_btn: "Contact Us Now",
-
-                // About Section
-                about_title: "About the Lawyer",
-                about_name: "Mr. Bashdar Ahmed Abubakir",
-                about_desc: "Licensed lawyer and member of the Bar Association in the Kurdistan Region / Iraq. Specialized in company establishment, trademark registration, and follow-up of tax and customs compliance.",
-                about_details: "Extensive practical experience in dealing with: Company Registration Department in the Region and Baghdad, General Tax Authority in Baghdad and the Region, General Customs Authority in Baghdad and the Region.",
-                vision: "Vision",
-                vision_text: "Providing accurate and reliable legal advice in accordance with local and international standards.",
-                mission: "Mission",
-                mission_text: "Supporting the business sector and investors through practical and effective legal solutions.",
-                specialty1: "Company Establishment and Registration",
-                specialty1_desc: "Establishment and registration of companies (local and foreign)",
-                specialty2: "Trademark Registration",
-                specialty2_desc: "Trademark and patent registration according to the international Nice classification",
-                specialty3: "Tax and Customs Services",
-                specialty3_desc: "Tax clearance, follow-up of the 'Skoda' system, tax compliance",
-
-                // Services Section
-                services_title: "Services",
-                service1: "Company Establishment and Registration",
-                service1_desc: "Establishment and registration of companies (local and foreign) of all types in accordance with Iraqi law",
-                service1_details: "We provide establishment and registration services for all types of companies (local and foreign) in accordance with the provisions of Iraqi law. We ensure that the procedures are completed accurately and quickly, with the necessary legal consultations to choose the appropriate legal form for the company.",
-                service1_item1: "Establishment of limited liability companies",
-                service1_item2: "Opening of joint stock companies",
-                service1_item3: "Establishment of branches of foreign companies",
-                service2: "Trademark Registration",
-                service2_desc: "Trademark and patent registration according to the international Nice classification",
-                service2_details: "We provide trademark and patent registration services according to the international Nice classification. We ensure the protection of our clients' intellectual property rights through correct legal procedures and continuous follow-up.",
-                service2_item1: "Trademark registration locally and internationally",
-                service2_item2: "Submission of patent applications",
-                service2_item3: "Renewal and registration of changes to trademarks",
-                service2_item4: "Follow-up of trademark infringement cases",
-                service3: "Tax and Customs Services",
-                service3_desc: "Tax clearance, follow-up of the 'Skoda' system, tax compliance",
-                service3_details: "We provide comprehensive services in the field of taxes and customs, including issuing tax clearance certificates, following up on the 'Skoda' system, and ensuring compliance with tax and customs laws and regulations.",
-                service3_item1: "Preparation and submission of tax returns",
-                service3_item2: "Follow-up of the 'Skoda' tax system",
-                service3_item3: "Issuance of tax clearance certificates",
-                service3_item4: "Handling customs procedures",
-                service4: "Import and Export",
-                service4_desc: "Licenses, approvals, and follow-up of trade fairs",
-                service4_details: "We provide integrated services in the field of import and export, including obtaining necessary licenses and approvals, following up on trade fairs, and facilitating customs and commercial procedures.",
-                service4_item1: "Obtaining import and export licenses",
-                service4_item2: "Follow-up of local and international trade fairs",
-                service4_item3: "Facilitating customs procedures for trade",
-                service4_item4: "Providing international business consultations",
-
-                // Contact Section
-                contact_title: "Contact Us",
-                form_name: "Full Name",
-                form_email: "Email Address",
-                form_phone: "Phone Number",
-                form_message: "Message",
-                form_submit: "Send Message",
-                contact_info: "Contact Information",
-                office_address: " Erbil – Iraq",
-                phone_number: " 1172651 0750",
-                phone_number2: "07731172626",
-                email_address: " bashdaraabubakir@gmial.com",
-                email_address2: "bashdarahmad9@yahoo.com",
-                office_hours: "Working Hours",
-                work_days: "Sunday - Thursday: 9 AM - 5 PM",
-                weekend: "Friday & Saturday: Closed",
-                follow_us: "Follow Us",
-
-                // Footer
-                footer_desc: "Solid legal experience in company establishment, trademark registration, tax and customs transactions, and commercial procedures inside and outside Iraq.",
-                quick_links: "Quick Links",
-                our_services: "Our Services",
-                copyright: "© 2023 Lawyer Bashdar Ahmed Abubakir. All Rights Reserved.",
-
-                // Service Modal
-                read_more: "Read More",
-                service_overview: "Service Overview",
-                service_features: "Service Features"
-            }
-        };
-
-        // Language switcher functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const langButtons = document.querySelectorAll('.lang-btn');
-            const currentLang = localStorage.getItem('selectedLang') || 'ar';
-
-            // Set initial language
-            setLanguage(currentLang);
-
-            // Add click event to language buttons
-            langButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const lang = this.getAttribute('data-lang');
-                    setLanguage(lang);
-
-                    // Update active button
-                    langButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Function to set language
-            function setLanguage(lang) {
-                // Update HTML direction
-                document.body.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
-
-                // Update all elements with data-key attribute
-                const elements = document.querySelectorAll('[data-key]');
-                elements.forEach(element => {
-                    const key = element.getAttribute('data-key');
-                    if (translations[lang] && translations[lang][key]) {
-                        element.textContent = translations[lang][key];
-                    }
-                });
-
-                // Save selected language to localStorage
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyLang(lang);
                 localStorage.setItem('selectedLang', lang);
-            }
-
-            // Scroll animations
-            const fadeElements = document.querySelectorAll('.fade-in');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            fadeElements.forEach(element => {
-                observer.observe(element);
             });
+        });
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', function () {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 100) {
-                    navbar.style.padding = '10px 0';
-                    navbar.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
-                } else {
-                    navbar.style.padding = '15px 0';
-                    navbar.style.boxShadow = 'none';
-                }
+        function applyLang(lang) {
+            const dir = lang === 'en' ? 'ltr' : 'rtl';
+            document.documentElement.setAttribute('lang', lang);
+            document.body.setAttribute('dir', dir);
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang]?.[key]) el.textContent = translations[lang][key];
             });
-
-            // Contact form submission
-            document.getElementById('contactForm').addEventListener('submit', function (e) {
-                // Formspree will handle the submission
-                // You can add a success message here if needed
-                setTimeout(function () {
-                    alert('Thank you for your message! We will contact you soon.');
-                    document.getElementById('contactForm').reset();
-                }, 1000);
+            // Update arrow icons based on direction
+            document.querySelectorAll('.service-card-link .bi-arrow-left, .service-card-link .bi-arrow-right').forEach(icon => {
+                icon.className = `bi bi-arrow-${dir === 'ltr' ? 'right' : 'left'}`;
             });
+        }
 
-            // Service modal functionality
-            const serviceCards = document.querySelectorAll('.service-card');
-            const serviceModals = document.querySelectorAll('.service-modal');
-            const closeButtons = document.querySelectorAll('.modal-close');
+        // ─── NAVBAR SCROLL ────────────────────────────────────────────────
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
 
-            // Open modal when service card is clicked
-            serviceCards.forEach(card => {
-                card.addEventListener('click', function () {
-                    const serviceId = this.getAttribute('data-service');
-                    const modal = document.getElementById(`serviceModal${serviceId}`);
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                });
+        // ─── SCROLL REVEAL ────────────────────────────────────────────────
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        // ─── SERVICE MODALS ───────────────────────────────────────────────
+        const modals = document.querySelectorAll('.service-modal');
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.getAttribute('data-service');
+                document.getElementById(`serviceModal${id}`)?.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
+        });
 
-            // Close modal when close button is clicked
-            closeButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const modal = this.closest('.service-modal');
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto'; // Enable scrolling
-                });
+        document.querySelectorAll('.modal-close-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.closest('.service-modal')?.classList.remove('active');
+                document.body.style.overflow = '';
             });
+        });
 
-            // Close modal when clicking outside the content
-            serviceModals.forEach(modal => {
-                modal.addEventListener('click', function (e) {
-                    if (e.target === this) {
-                        this.classList.remove('active');
-                        document.body.style.overflow = 'auto'; // Enable scrolling
-                    }
-                });
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    serviceModals.forEach(modal => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto'; // Enable scrolling
-                    });
+        modals.forEach(m => {
+            m.addEventListener('click', e => {
+                if (e.target === m) {
+                    m.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
         });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                modals.forEach(m => m.classList.remove('active'));
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ─── CONTACT FORM ─────────────────────────────────────────────────
+        document.getElementById('contactForm')?.addEventListener('submit', () => {
+            setTimeout(() => {
+                alert('✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+                document.getElementById('contactForm').reset();
+            }, 800);
+        });
+    });
     </script>
 </body>
-
 </html>
